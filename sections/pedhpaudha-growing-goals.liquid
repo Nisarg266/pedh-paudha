@@ -1,0 +1,85 @@
+{% comment %}
+  PedhPaudha Shop by Growing Need
+  Lifestyle goal cards for home, kitchen, lawn, and commercial nursery
+{% endcomment %}
+
+<section class="pp-goals-section" aria-label="Growing Goals">
+  <div class="pp-container">
+    <div class="pp-goals-header">
+      <div class="pp-subheading-tag">INSPIRATIONAL SPACES</div>
+      <h2 class="pp-section-title">What's Your Growing Goal?</h2>
+      <p style="font-family:var(--pp-font-body); font-size:1.05rem; color:var(--pp-text-secondary); margin-top:8px;">
+        Explore tailored equipment and solutions for your specific green corner.
+      </p>
+    </div>
+
+    <div class="pp-goals-collage">
+      <a href="#collections" class="pp-goal-card pp-goal-card--home">
+        <img src="{{ 'home-garden.webp' | asset_url }}" alt="A flourishing home garden" class="pp-goal-img" width="640" height="480" loading="lazy">
+        <span class="pp-goal-overlay" aria-hidden="true"></span>
+        <span class="pp-goal-content">
+          <span class="pp-goal-kicker">HOME GARDEN</span>
+          <span class="pp-goal-title">Start a Home Garden</span>
+          <span class="pp-goal-desc">Create a calm green corner with beginner-friendly essentials.</span>
+          <span class="pp-goal-cta">Discover essentials <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </span>
+      </a>
+
+      <a href="#collections" class="pp-goal-card pp-goal-card--kitchen">
+        <img src="{{ 'kitchen-garden.webp' | asset_url }}" alt="Fresh vegetables growing in a kitchen garden" class="pp-goal-img" width="640" height="480" loading="lazy">
+        <span class="pp-goal-overlay" aria-hidden="true"></span>
+        <span class="pp-goal-content">
+          <span class="pp-goal-kicker">GROW AT HOME</span>
+          <span class="pp-goal-title">Build a Kitchen Garden</span>
+          <span class="pp-goal-desc">Grow fresh herbs and seasonal vegetables at home.</span>
+          <span class="pp-goal-cta">Discover essentials <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </span>
+      </a>
+
+      <a href="#products" class="pp-goal-card pp-goal-card--feature">
+        <img src="{{ 'pp-vertical-planters-feature.webp' | asset_url }}" alt="Colorful vertical tower planters filled with flowers" class="pp-goal-img" width="1024" height="1536" loading="lazy">
+        <span class="pp-goal-overlay" aria-hidden="true"></span>
+        <span class="pp-goal-content">
+          <span class="pp-goal-kicker">MAKE ROOM TO GROW</span>
+          <span class="pp-goal-title">Grow Up. Grow Beautiful.</span>
+          <span class="pp-goal-desc">Bring a whole garden to even the smallest space.</span>
+          <span class="pp-goal-cta">Explore planters <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </span>
+      </a>
+
+      <a href="#machinery" class="pp-goal-card pp-goal-card--lawn">
+        <img src="{{ 'lawn-care.webp' | asset_url }}" alt="A neatly maintained green lawn" class="pp-goal-img" width="640" height="480" loading="lazy">
+        <span class="pp-goal-overlay" aria-hidden="true"></span>
+        <span class="pp-goal-content">
+          <span class="pp-goal-kicker">OUTDOOR CARE</span>
+          <span class="pp-goal-title">Maintain a Beautiful Lawn</span>
+          <span class="pp-goal-desc">Keep your lawn lush, green and beautifully cared for.</span>
+          <span class="pp-goal-cta">Explore lawn care <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </span>
+      </a>
+
+      <a href="#collections" class="pp-goal-card pp-goal-card--nursery">
+        <img src="{{ 'nursery-growing.webp' | asset_url }}" alt="Colorful flowers growing in a nursery" class="pp-goal-img" width="640" height="480" loading="lazy">
+        <span class="pp-goal-overlay" aria-hidden="true"></span>
+        <span class="pp-goal-content">
+          <span class="pp-goal-kicker">GROWING BUSINESS</span>
+          <span class="pp-goal-title">Grow a Nursery</span>
+          <span class="pp-goal-desc">Build a thriving nursery with dependable growing essentials.</span>
+          <span class="pp-goal-cta">Discover essentials <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PedhPaudha Goals",
+  "settings": [],
+  "presets": [
+    {
+      "name": "PedhPaudha Goals"
+    }
+  ]
+}
+{% endschema %}

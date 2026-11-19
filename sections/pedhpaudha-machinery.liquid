@@ -1,0 +1,228 @@
+{% comment %}
+  PedhPaudha Botanical Equipment & Machinery Sourcing Showcase
+  Exact visual reproduction of reference design:
+  - Desktop: 3-column asymmetric editorial layout with authentic vintage etchings (Image 2)
+  - Mobile: Text & pill button at the top, vintage bottle etching beside button, 2-column staggered image collage below (Image 3)
+{% endcomment %}
+
+<section class="pp-sourcing-section" id="machinery" aria-label="Garden Equipment Sourcing">
+  <!-- Soft Dappled Sunlight / Leaf Ambient Shadow -->
+  <div class="pp-sourcing-shadow-overlay" aria-hidden="true"></div>
+
+  <div class="pp-container pp-sourcing-container">
+    <div class="pp-sourcing-grid">
+
+      <!-- COLUMN 1: Editorial Header + (Desktop: Card 3 with Flower Sketch) -->
+      <div class="pp-sourcing-col pp-col-editorial">
+        <div class="pp-sourcing-header">
+          <h2 class="pp-sourcing-title">
+            <span class="pp-title-row">
+              {{ section.settings.title_line_1 | default: 'precision equipment' }}
+              <span class="pp-marker-wrap" aria-hidden="true">
+                <img src="{{ 'sketch_scribble_trans.png' | asset_url }}" alt="" class="pp-marker-img" width="180" height="20">
+              </span>
+            </span>
+            <span class="pp-title-row">{{ section.settings.title_line_2 | default: 'sourcing.' }}</span>
+          </h2>
+
+          <p class="pp-sourcing-desc">
+            {{ section.settings.description | default: 'Equipment sourcing is a crucial step, reflecting our commitment to quality and durability. We carefully select professional garden machines, ergonomic hand tools and smart irrigation systems engineered for exceptional performance in caring for green spaces.' }}
+          </p>
+
+          <div class="pp-sourcing-btn-row">
+            <a href="{{ section.settings.button_link | default: '#collections' }}" class="pp-sourcing-btn">
+              {{ section.settings.button_label | default: 'all equipment' }}
+            </a>
+            
+            <!-- Mobile Bottle Sketch (positioned to the right of the button) -->
+            <div class="pp-mobile-bottle-art" aria-hidden="true">
+              <img
+                src="{{ 'sketch_bottle_trans.png' | asset_url }}"
+                alt=""
+                class="pp-art-bottle-img"
+                width="100"
+                height="118"
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Card 3: Botanical & wild plants -->
+        <div class="pp-sourcing-card-wrap pp-card-desktop-flower">
+          <div class="pp-sourcing-img-frame pp-frame-square">
+            {%- if section.settings.image_3 != blank -%}
+              {{ section.settings.image_3 | image_url: width: 700 | image_tag: class: 'pp-sourcing-img', loading: 'lazy', alt: section.settings.caption_3 }}
+            {%- else -%}
+              <img
+                src="{{ 'kitchen-garden.webp' | asset_url }}"
+                alt="Complex of botanical and wild plants"
+                class="pp-sourcing-img"
+                width="340"
+                height="340"
+                loading="lazy"
+              >
+            {%- endif -%}
+          </div>
+          <p class="pp-sourcing-caption">
+            {{ section.settings.caption_3 | default: 'Complex of botanical and wild plants' }}
+          </p>
+        </div>
+      </div>
+
+      <!-- COLUMN 2: Photo 1 (Brush Cutters & Tillers) + Sprig Sketch -->
+      <div class="pp-sourcing-col pp-col-sprig">
+        <!-- Mobile Sprig Sketch: sits directly above left photo on mobile -->
+        <div class="pp-mobile-sprig-box" aria-hidden="true">
+          <img
+            src="{{ 'sketch_sprig_trans.png' | asset_url }}"
+            alt=""
+            class="pp-art-sprig-img"
+            width="82"
+            height="82"
+          >
+        </div>
+
+        <div class="pp-sourcing-card-wrap pp-card-machinery">
+          <div class="pp-sourcing-img-frame pp-frame-medium">
+            {%- if section.settings.image_1 != blank -%}
+              {{ section.settings.image_1 | image_url: width: 800 | image_tag: class: 'pp-sourcing-img', loading: 'lazy', alt: section.settings.caption_1 }}
+            {%- else -%}
+              <img
+                src="{{ 'machinery-feature.webp' | asset_url }}"
+                alt="High-torque brush cutters and tillers"
+                class="pp-sourcing-img"
+                width="380"
+                height="475"
+                loading="lazy"
+              >
+            {%- endif -%}
+          </div>
+          <p class="pp-sourcing-caption">
+            {{ section.settings.caption_1 | default: 'High-torque brush cutters & tillers' }}
+          </p>
+        </div>
+
+        <!-- Desktop Sprig Sketch: sits underneath photo 1 on desktop -->
+        <div class="pp-desktop-sprig-box" aria-hidden="true">
+          <img
+            src="{{ 'sketch_sprig_trans.png' | asset_url }}"
+            alt=""
+            class="pp-art-sprig-img"
+            width="125"
+            height="125"
+          >
+        </div>
+      </div>
+
+      <!-- COLUMN 3: Bottle Sketch (Desktop) + Photo 2 (Precision Turf & Lawn Care) -->
+      <div class="pp-sourcing-col pp-col-tall">
+        <!-- Desktop Bottle Sketch: positioned top-right on desktop -->
+        <div class="pp-desktop-bottle-box" aria-hidden="true">
+          <img
+            src="{{ 'sketch_bottle_trans.png' | asset_url }}"
+            alt=""
+            class="pp-art-bottle-img"
+            width="120"
+            height="142"
+          >
+        </div>
+
+        <div class="pp-sourcing-card-wrap pp-card-turf">
+          <div class="pp-sourcing-img-frame pp-frame-tall">
+            {%- if section.settings.image_2 != blank -%}
+              {{ section.settings.image_2 | image_url: width: 800 | image_tag: class: 'pp-sourcing-img', loading: 'lazy', alt: section.settings.caption_2 }}
+            {%- else -%}
+              <img
+                src="{{ 'lawn-care.webp' | asset_url }}"
+                alt="Precision turf and lawn equipment"
+                class="pp-sourcing-img"
+                width="380"
+                height="530"
+                loading="lazy"
+              >
+            {%- endif -%}
+          </div>
+          <p class="pp-sourcing-caption">
+            {{ section.settings.caption_2 | default: 'Precision turf & lawn care' }}
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PedhPaudha Machinery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Heading Line 1",
+      "default": "precision equipment"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Heading Line 2",
+      "default": "sourcing."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description Text",
+      "default": "Equipment sourcing is a crucial step, reflecting our commitment to quality and durability. We carefully select professional garden machines, ergonomic hand tools and smart irrigation systems engineered for exceptional performance in caring for green spaces."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "all equipment"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Card 1 Image (Center/Left)"
+    },
+    {
+      "type": "text",
+      "id": "caption_1",
+      "label": "Card 1 Caption",
+      "default": "High-torque brush cutters & tillers"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Card 2 Image (Tall Right)"
+    },
+    {
+      "type": "text",
+      "id": "caption_2",
+      "label": "Card 2 Caption",
+      "default": "Precision turf & lawn care"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Card 3 Image (Desktop Bottom-Left)"
+    },
+    {
+      "type": "text",
+      "id": "caption_3",
+      "label": "Card 3 Caption",
+      "default": "Complex of botanical and wild plants"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PedhPaudha Machinery"
+    }
+  ]
+}
+{% endschema %}

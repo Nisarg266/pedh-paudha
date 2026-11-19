@@ -1,0 +1,141 @@
+{% comment %}
+  PedhPaudha Top Categories Showcase & Smooth Carousel Slider
+  - Larger premium category cards with prominent visuals
+  - Smooth touch & click swipeable horizontal slider
+  - Right-aligned "View More" link in header
+  - Centered slider navigation arrows below the products
+{% endcomment %}
+
+<section class="pp-categories-section" id="collections" aria-label="Shop By Category">
+  <div class="pp-container">
+    <div class="pp-categories-header">
+      <div>
+        <div class="pp-subheading-tag">SHOP BY CATEGORY</div>
+        <h2 class="pp-section-title">Explore Our Collections</h2>
+      </div>
+      <a href="{{ routes.collections_url }}" class="pp-view-all-link" aria-label="View more categories">
+        <span>View More</span>
+        <span class="pp-view-all-circle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <!-- Smooth Horizontal Slider Container with Side Floating Arrows -->
+    <div class="pp-categories-slider-wrap">
+      <!-- Left Floating Navigation Arrow -->
+      <button class="pp-cat-nav-btn pp-cat-nav-prev pp-cat-prev" type="button" aria-label="Previous categories">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
+      </button>
+
+      <div class="pp-categories-grid pp-categories-slider" id="pp-cat-slider">
+        <!-- 1. Plants & Seeds -->
+        <a href="#category-plants" class="pp-cat-card" id="category-plants">
+          <div class="pp-cat-img-box">
+            <img
+              src="{{ 'cat_plants_seeds.webp' | asset_url }}"
+              alt="Plants & Seeds"
+              class="pp-cat-img"
+              width="180"
+              height="150"
+              loading="lazy"
+            >
+          </div>
+          <h3 class="pp-cat-title">Plants &amp; Seeds</h3>
+        </a>
+
+        <!-- 2. Garden Tools -->
+        <a href="#category-tools" class="pp-cat-card" id="category-tools">
+          <div class="pp-cat-img-box">
+            <img
+              src="{{ 'cat_garden_tools.webp' | asset_url }}"
+              alt="Garden Tools"
+              class="pp-cat-img"
+              width="180"
+              height="150"
+              loading="lazy"
+            >
+          </div>
+          <h3 class="pp-cat-title">Garden Tools</h3>
+        </a>
+
+        <!-- 3. Machines -->
+        <a href="#category-machines" class="pp-cat-card" id="category-machines">
+          <div class="pp-cat-img-box">
+            <img
+              src="{{ 'cat_machines.webp' | asset_url }}"
+              alt="Machines"
+              class="pp-cat-img"
+              width="180"
+              height="150"
+              loading="lazy"
+            >
+          </div>
+          <h3 class="pp-cat-title">Machines</h3>
+        </a>
+
+        <!-- 4. Irrigation -->
+        <a href="#category-irrigation" class="pp-cat-card" id="category-irrigation">
+          <div class="pp-cat-img-box">
+            <img
+              src="{{ 'cat_irrigation.webp' | asset_url }}"
+              alt="Irrigation"
+              class="pp-cat-img"
+              width="180"
+              height="150"
+              loading="lazy"
+            >
+          </div>
+          <h3 class="pp-cat-title">Irrigation</h3>
+        </a>
+
+        <!-- 5. Soil & Nutrition -->
+        <a href="#category-soil" class="pp-cat-card" id="category-soil">
+          <div class="pp-cat-img-box">
+            <img
+              src="{{ 'cat_soil_nutrition.webp' | asset_url }}"
+              alt="Soil & Nutrition"
+              class="pp-cat-img"
+              width="180"
+              height="150"
+              loading="lazy"
+            >
+          </div>
+          <h3 class="pp-cat-title">Soil &amp; Nutrition</h3>
+        </a>
+
+        <!-- 6. Pots & Planters -->
+        <a href="#category-pots" class="pp-cat-card" id="category-pots">
+          <div class="pp-cat-img-box">
+            <img
+              src="{{ 'cat_pots_planters.webp' | asset_url }}"
+              alt="Pots & Planters"
+              class="pp-cat-img"
+              width="180"
+              height="150"
+              loading="lazy"
+            >
+          </div>
+          <h3 class="pp-cat-title">Pots &amp; Planters</h3>
+        </a>
+      </div>
+
+      <!-- Right Floating Navigation Arrow -->
+      <button class="pp-cat-nav-btn pp-cat-nav-next pp-cat-next" type="button" aria-label="Next categories">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PedhPaudha Categories",
+  "settings": [],
+  "presets": [
+    {
+      "name": "PedhPaudha Categories"
+    }
+  ]
+}
+{% endschema %}

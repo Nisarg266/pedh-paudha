@@ -1,0 +1,13 @@
+{
+  "type": "footer",
+  "name": "t:names.footer",
+  "sections": {
+    "pedhpaudha_footer": {
+      "type": "pedhpaudha-footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "pedhpaudha_footer"
+  ]
+}

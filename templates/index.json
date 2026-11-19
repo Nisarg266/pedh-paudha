@@ -1,0 +1,61 @@
+{
+  "sections": {
+    "pedhpaudha_hero": {
+      "type": "pedhpaudha-hero",
+      "settings": {}
+    },
+    "pedhpaudha_categories": {
+      "type": "pedhpaudha-categories",
+      "settings": {}
+    },
+    "pedhpaudha_search": {
+      "type": "pedhpaudha-search",
+      "settings": {}
+    },
+    "pedhpaudha_featured_products": {
+      "type": "pedhpaudha-featured-products",
+      "settings": {}
+    },
+    "pedhpaudha_machinery": {
+      "type": "pedhpaudha-machinery",
+      "settings": {}
+    },
+    "pedhpaudha_growing_goals": {
+      "type": "pedhpaudha-growing-goals",
+      "settings": {}
+    },
+    "pedhpaudha_starter_kits": {
+      "type": "pedhpaudha-starter-kits",
+      "settings": {}
+    },
+    "pedhpaudha_why_us": {
+      "type": "pedhpaudha-why-us",
+      "settings": {}
+    },
+    "pedhpaudha_blog": {
+      "type": "pedhpaudha-blog",
+      "settings": {}
+    },
+    "pedhpaudha_testimonials": {
+      "type": "pedhpaudha-testimonials",
+      "settings": {}
+    },
+    "pedhpaudha_newsletter": {
+      "type": "pedhpaudha-newsletter",
+      "settings": {}
+    }
+  },
+  "order": [
+    "pedhpaudha_hero",
+    "pedhpaudha_categories",
+    "pedhpaudha_search",
+    "pedhpaudha_featured_products",
+    "pedhpaudha_machinery",
+    "pedhpaudha_growing_goals",
+    "pedhpaudha_starter_kits",
+    "pedhpaudha_why_us",
+    "pedhpaudha_blog",
+    "pedhpaudha_testimonials",
+    "pedhpaudha_newsletter"
+  ]
+}

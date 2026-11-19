@@ -1,0 +1,43 @@
+{% comment %}
+  PedhPaudha Seasonal Editorial Banner
+{% endcomment %}
+
+<section class="pp-seasonal-section" aria-label="Seasonal Promotion">
+  <div class="pp-container">
+    <div class="pp-seasonal-banner">
+      <img
+        src="{{ 'seasonal-banner.webp' | asset_url }}"
+        alt="Lush green garden bathed in natural warm sunlight"
+        class="pp-seasonal-bg"
+        width="1200"
+        height="360"
+        loading="lazy"
+      >
+      <div class="pp-seasonal-overlay"></div>
+      <div class="pp-seasonal-content">
+        <h2 class="pp-seasonal-heading">Make Space for<br>Something Green.</h2>
+        <p class="pp-seasonal-text">
+          From revitalizing your patio to planting seasonal blossoms, explore hand-selected tools and soil nutrition for your next growing season.
+        </p>
+        <a href="#collections" class="pp-btn-shop">
+          <span>Explore the Collection</span>
+          <span class="pp-btn-arrow-circle">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PedhPaudha Seasonal",
+  "settings": [],
+  "presets": [
+    {
+      "name": "PedhPaudha Seasonal"
+    }
+  ]
+}
+{% endschema %}

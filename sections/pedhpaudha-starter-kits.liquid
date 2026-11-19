@@ -1,0 +1,113 @@
+{% comment %}
+  PedhPaudha Beginner Gardening Starter Kits
+{% endcomment %}
+
+<section class="pp-kits-section" id="starter-kits" aria-label="Beginner Gardening Kits">
+  <div class="pp-container">
+    <div class="pp-kits-header">
+      <div class="pp-subheading-tag">BEGINNER CORNER</div>
+      <h2 class="pp-section-title">New to Gardening? Start Here.</h2>
+      <p style="font-family:var(--pp-font-body); font-size:1.05rem; color:var(--pp-text-secondary); margin-top:8px;">
+        Everything you need to take your first step towards growing something green.
+      </p>
+    </div>
+
+    <div class="pp-kits-grid">
+      <!-- Kit 1 -->
+      <div class="pp-kit-card">
+        <div class="pp-kit-img-box">
+          <img
+            src="{{ 'starter-kit.webp' | asset_url }}"
+            alt="Balcony Gardening Starter Kit"
+            class="pp-kit-img"
+            width="220"
+            height="180"
+            loading="lazy"
+          >
+        </div>
+        <h3 class="pp-kit-title">Balcony Gardening Starter Kit</h3>
+        <div class="pp-kit-price-row">
+          <span class="pp-kit-price">₹1,899</span>
+          <span class="pp-kit-orig">₹2,499</span>
+        </div>
+        <ul class="pp-kit-items">
+          <li>3 Breathable Fabric Grow Bags (12x12)</li>
+          <li>Enriched Organic Potting Soil (5 kg)</li>
+          <li>Ergonomic Hand Trowel & Precision Pruner</li>
+          <li>Organic Seaweed Liquid Plant Booster (500 ml)</li>
+        </ul>
+        <button class="pp-btn-shop pp-btn-add-cart" data-product-name="Balcony Gardening Starter Kit" style="width:100%; justify-content:center;">
+          <span>Add Kit to Cart</span>
+        </button>
+      </div>
+
+      <!-- Kit 2 -->
+      <div class="pp-kit-card">
+        <div class="pp-kit-img-box">
+          <img
+            src="{{ 'cat_soil_nutrition.webp' | asset_url }}"
+            alt="Kitchen Garden Starter Kit"
+            class="pp-kit-img"
+            width="180"
+            height="160"
+            loading="lazy"
+          >
+        </div>
+        <h3 class="pp-kit-title">Kitchen Garden Starter Kit</h3>
+        <div class="pp-kit-price-row">
+          <span class="pp-kit-price">₹2,299</span>
+          <span class="pp-kit-orig">₹2,999</span>
+        </div>
+        <ul class="pp-kit-items">
+          <li>5 Heirloom Non-GMO Vegetable Seed Packs</li>
+          <li>Biodegradable 50-Cell Seedling Plug Tray</li>
+          <li>Washed & Buffered Cocopeat Brick (5 kg)</li>
+          <li>Fine Mist Water Sprayer & Plant Identity Tags</li>
+        </ul>
+        <button class="pp-btn-shop pp-btn-add-cart" data-product-name="Kitchen Garden Starter Kit" style="width:100%; justify-content:center;">
+          <span>Add Kit to Cart</span>
+        </button>
+      </div>
+
+      <!-- Kit 3 -->
+      <div class="pp-kit-card">
+        <div class="pp-kit-img-box">
+          <img
+            src="{{ 'cat_garden_tools.webp' | asset_url }}"
+            alt="Plant Care Essentials Kit"
+            class="pp-kit-img"
+            width="180"
+            height="160"
+            loading="lazy"
+          >
+        </div>
+        <h3 class="pp-kit-title">Plant Care Essentials Kit</h3>
+        <div class="pp-kit-price-row">
+          <span class="pp-kit-price">₹1,299</span>
+          <span class="pp-kit-orig">₹1,699</span>
+        </div>
+        <ul class="pp-kit-items">
+          <li>Cold-Pressed Pure Neem Oil Spray (500 ml)</li>
+          <li>Instant Analog Soil Moisture & pH Meter</li>
+          <li>Stainless Floral Pruning Snips</li>
+          <li>Puncture-Resistant Nitrile Garden Work Gloves</li>
+        </ul>
+        <button class="pp-btn-shop pp-btn-add-cart" data-product-name="Plant Care Essentials Kit" style="width:100%; justify-content:center;">
+          <span>Add Kit to Cart</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PedhPaudha Kits",
+  "settings": [],
+  "presets": [
+    {
+      "name": "PedhPaudha Kits"
+    }
+  ]
+}
+{% endschema %}

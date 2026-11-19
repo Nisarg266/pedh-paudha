@@ -1,0 +1,216 @@
+{% comment %}
+  PedhPaudha Custom Header & Announcement Bar
+  Exact visual match to the reference design
+{% endcomment %}
+
+<!-- Slim Top Announcement Bar -->
+{% if section.settings.show_announcement %}
+  <aside class="pp-announcement" aria-label="Store Announcement">
+    <div class="pp-announcement-inner">
+      <span class="pp-announcement-tag">{{ section.settings.announcement_tag }}</span>
+      <span>{{ section.settings.announcement_text }}</span>
+      <button class="pp-announcement-close" aria-label="Close Announcement">&times;</button>
+    </div>
+  </aside>
+{% endif %}
+
+<!-- Premium Navigation Header -->
+<div class="pp-header-slot">
+<header
+  class="pp-header{% if template.name == 'index' %} pp-header--hero{% endif %}"
+  id="pp-site-header"
+>
+  <div class="pp-container">
+    <div class="pp-header-row">
+      <!-- Left: Logo -->
+      <a href="{{ routes.root_url }}" class="pp-logo-link" aria-label="PedhPaudha Home">
+        <img
+          src="https://cdn.shopify.com/s/files/1/1012/3345/9510/files/PedhPaudha_Sunscape_Logo.png?v=1795074452"
+          alt="PedhPaudha"
+          class="pp-logo-img"
+          width="140"
+          height="82"
+          loading="eager"
+        >
+      </a>
+
+      <!-- Center: Navigation -->
+      <nav class="pp-nav" aria-label="Main Navigation">
+        <li class="pp-nav-item">
+          <a href="{{ routes.root_url }}" class="pp-nav-link active">Home</a>
+        </li>
+        <li class="pp-nav-item">
+          <a href="{{ routes.all_products_collection_url }}" class="pp-nav-link">
+            Shop All
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <!-- Mega Menu Dropdown -->
+          <div class="pp-mega-dropdown">
+            <a href="#category-tools" class="pp-mega-item">
+              <div class="pp-mega-icon">🌿</div>
+              <div>
+                <div class="pp-mega-title">Hand Gardening Tools</div>
+                <div class="pp-mega-desc">Pruners, trowels, cultivators & weeding forks</div>
+              </div>
+            </a>
+            <a href="#category-machines" class="pp-mega-item">
+              <div class="pp-mega-icon">⚡</div>
+              <div>
+                <div class="pp-mega-title">Power Gardening Machines</div>
+                <div class="pp-mega-desc">Electric sprayers, lawn mowers & tillers</div>
+              </div>
+            </a>
+            <a href="#category-irrigation" class="pp-mega-item">
+              <div class="pp-mega-icon">💧</div>
+              <div>
+                <div class="pp-mega-title">Watering & Irrigation</div>
+                <div class="pp-mega-desc">Drip kits, spray guns, hoses & automatic timers</div>
+              </div>
+            </a>
+            <a href="#category-soil" class="pp-mega-item">
+              <div class="pp-mega-icon">🌱</div>
+              <div>
+                <div class="pp-mega-title">Soil & Fertilizers</div>
+                <div class="pp-mega-desc">Cocopeat, organic compost & plant boosters</div>
+              </div>
+            </a>
+            <a href="#category-pots" class="pp-mega-item">
+              <div class="pp-mega-icon">🏺</div>
+              <div>
+                <div class="pp-mega-title">Pots & Grow Bags</div>
+                <div class="pp-mega-desc">Fabric grow bags, terracotta pots & planters</div>
+              </div>
+            </a>
+            <a href="#category-plants" class="pp-mega-item">
+              <div class="pp-mega-icon">🌻</div>
+              <div>
+                <div class="pp-mega-title">Seeds & Growing Accessories</div>
+                <div class="pp-mega-desc">Heirloom seeds, seedling trays & plant labels</div>
+              </div>
+            </a>
+            <a href="#products" class="pp-mega-item">
+              <div class="pp-mega-icon">🛡️</div>
+              <div>
+                <div class="pp-mega-title">Plant Protection</div>
+                <div class="pp-mega-desc">Organic neem sprays & eco pest management</div>
+              </div>
+            </a>
+            <a href="#products" class="pp-mega-item">
+              <div class="pp-mega-icon">🧤</div>
+              <div>
+                <div class="pp-mega-title">Safety Equipment</div>
+                <div class="pp-mega-desc">Gardening gloves, eye shields & aprons</div>
+              </div>
+            </a>
+          </div>
+        </li>
+        <li class="pp-nav-item">
+          <a href="#category-tools" class="pp-nav-link">Garden Tools</a>
+        </li>
+        <li class="pp-nav-item">
+          <a href="#category-machines" class="pp-nav-link">Machines</a>
+        </li>
+        <li class="pp-nav-item">
+          <a href="#category-irrigation" class="pp-nav-link">Irrigation</a>
+        </li>
+        <li class="pp-nav-item">
+          <a href="#category-soil" class="pp-nav-link">Growing Essentials</a>
+        </li>
+        <li class="pp-nav-item">
+          <a href="#why-pedhpaudha" class="pp-nav-link">About Us</a>
+        </li>
+      </nav>
+
+      <!-- Right: Actions -->
+      <div class="pp-actions">
+        <!-- Search Trigger -->
+        <a href="#pp-search-anchor" class="pp-icon-btn" aria-label="Search Catalog" onclick="document.getElementById('pp-live-search')?.focus();">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+
+        <!-- Account -->
+        <a href="{{ routes.account_url }}" class="pp-icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+
+        <!-- Wishlist -->
+        <button class="pp-icon-btn" aria-label="Wishlist" onclick="alert('Wishlist opened! Items stored in your browser session.');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <span class="pp-wishlist-badge" style="display:none;">0</span>
+        </button>
+
+        <!-- Cart Bag with Badge -->
+        <a href="{{ routes.cart_url }}" class="pp-icon-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="pp-cart-badge">0</span>
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="pp-mobile-toggle" aria-label="Open Navigation Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+</div>
+
+<!-- Mobile Navigation Drawer -->
+<div class="pp-drawer-backdrop" id="pp-drawer-backdrop"></div>
+<div class="pp-mobile-drawer" id="pp-mobile-drawer">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+    <img src="https://cdn.shopify.com/s/files/1/1012/3345/9510/files/PedhPaudha_Sunscape_Logo.png?v=1795074452" alt="PedhPaudha" width="140" height="82" style="height:36px; width:auto;">
+    <button class="pp-drawer-close" style="background:none; border:none; font-size:24px; cursor:pointer;" aria-label="Close menu">&times;</button>
+  </div>
+  <nav style="display:flex; flex-direction:column; gap:16px;">
+    <a href="{{ routes.root_url }}" style="font-weight:700; color:var(--pp-primary-green); text-decoration:none; font-size:1.1rem;">Home</a>
+    <a href="{{ routes.all_products_collection_url }}" style="font-weight:600; color:var(--pp-text-primary); text-decoration:none;">Shop All</a>
+    <a href="#category-tools" style="font-weight:600; color:var(--pp-text-primary); text-decoration:none;">Garden Tools</a>
+    <a href="#category-machines" style="font-weight:600; color:var(--pp-text-primary); text-decoration:none;">Machines</a>
+    <a href="#category-irrigation" style="font-weight:600; color:var(--pp-text-primary); text-decoration:none;">Irrigation</a>
+    <a href="#category-soil" style="font-weight:600; color:var(--pp-text-primary); text-decoration:none;">Growing Essentials</a>
+    <a href="#why-pedhpaudha" style="font-weight:600; color:var(--pp-text-primary); text-decoration:none;">About Us</a>
+  </nav>
+</div>
+
+<!-- Video Modal for "Watch How It Works" -->
+<div class="pp-modal-backdrop" id="pp-video-modal">
+  <div class="pp-modal-card">
+    <button class="pp-modal-close" aria-label="Close modal">&times;</button>
+    <div class="pp-modal-body">
+      <iframe
+        class="pp-modal-video"
+        src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=0"
+        title="PedhPaudha Garden Equipment Showcase"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "PedhPaudha Header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show Announcement Bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_tag",
+      "label": "Announcement Tag",
+      "default": "Grow Better"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "Live Greener. Discover PedhPaudha | Free delivery on orders over ₹999"
+    }
+  ]
+}
+{% endschema %}

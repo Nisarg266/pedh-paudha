@@ -1,0 +1,17 @@
+{
+  "type": "header",
+  "name": "t:names.header",
+  "sections": {
+    "pedhpaudha_header": {
+      "type": "pedhpaudha-header",
+      "settings": {
+        "show_announcement": true,
+        "announcement_tag": "Grow Better",
+        "announcement_text": "Live Greener. Discover PedhPaudha | Free delivery on orders over ₹999"
+      }
+    }
+  },
+  "order": [
+    "pedhpaudha_header"
+  ]
+}

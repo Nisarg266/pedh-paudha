@@ -1,0 +1,89 @@
+{% comment %}
+  PedhPaudha Premium Multi-Column Footer
+{% endcomment %}
+
+<footer class="pp-footer" aria-label="Site Footer">
+  <div class="pp-container">
+    <div class="pp-footer-grid">
+      <!-- Column 1: Brand & Logo -->
+      <div>
+        <a href="{{ routes.root_url }}" class="pp-footer-logo-link" aria-label="PedhPaudha Home">
+          <img
+            src="https://cdn.shopify.com/s/files/1/1012/3345/9510/files/PedhPaudha_Sunscape_Logo.png?v=1795074452"
+            alt="PedhPaudha"
+            class="pp-footer-logo-img"
+            width="150"
+            height="88"
+            loading="lazy"
+          >
+        </a>
+        <p class="pp-footer-desc">
+          Everything you need to grow, nurture and maintain beautiful green spaces. Engineered for modern growers and commercial nurseries.
+        </p>
+        <div class="pp-footer-socials">
+          <a href="#" class="pp-social-btn" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="pp-social-btn" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="pp-social-btn" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Shop -->
+      <div>
+        <h4 class="pp-footer-col-title">Shop Equipment</h4>
+        <ul class="pp-footer-links">
+          <li><a href="{{ routes.all_products_collection_url }}">All Products</a></li>
+          <li><a href="#category-tools">Hand Garden Tools</a></li>
+          <li><a href="#category-machines">Garden Machines</a></li>
+          <li><a href="#category-irrigation">Watering & Irrigation</a></li>
+          <li><a href="#category-soil">Growing Essentials</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Explore -->
+      <div>
+        <h4 class="pp-footer-col-title">Explore</h4>
+        <ul class="pp-footer-links">
+          <li><a href="#why-pedhpaudha">About Us</a></li>
+          <li><a href="#starter-kits">Beginner Starter Kits</a></li>
+          <li><a href="#products">Bestsellers</a></li>
+          <li><a href="#machinery">Commercial Machinery</a></li>
+          <li><a href="#collections">All Collections</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Customer Care -->
+      <div>
+        <h4 class="pp-footer-col-title">Customer Care</h4>
+        <ul class="pp-footer-links">
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Returns & Refunds</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Contact Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright & Badges -->
+    <div class="pp-footer-bottom">
+      <div>© 2026 PedhPaudha. All Rights Reserved. Everything You Need to Grow.</div>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span>🔒 Secure 256-Bit SSL Checkout</span>
+        <span>🇮🇳 Made for Indian Growers</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "PedhPaudha Footer",
+  "settings": []
+}
+{% endschema %}

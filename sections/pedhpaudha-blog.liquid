@@ -1,0 +1,104 @@
+{% comment %}
+  PedhPaudha Gardening Knowledge & Blog
+{% endcomment %}
+
+<section class="pp-blog-section" aria-label="Gardening Guides">
+  <div class="pp-container">
+    <div style="text-align:center; max-width:640px; margin:0 auto 44px auto;">
+      <div class="pp-subheading-tag">GARDENING WISDOM</div>
+      <h2 class="pp-section-title">Learn. Grow. Bloom.</h2>
+      <p style="font-family:var(--pp-font-body); font-size:1.05rem; color:var(--pp-text-secondary); margin-top:8px;">
+        Useful ideas, practical tips and seasonal guides to help you grow with confidence.
+      </p>
+    </div>
+
+    <div class="pp-blog-grid">
+      <!-- Article 1 -->
+      <article class="pp-blog-card">
+        <div class="pp-blog-img-wrap">
+          <img
+            src="{{ 'cat_garden_tools.webp' | asset_url }}"
+            alt="Essential Tools Every Beginner Gardener Needs"
+            class="pp-blog-img"
+            width="380"
+            height="210"
+            loading="lazy"
+          >
+        </div>
+        <div class="pp-blog-content">
+          <span class="pp-blog-meta">Tool Guide • 4 min read</span>
+          <h3 class="pp-blog-title">Essential Tools Every Beginner Gardener Needs</h3>
+          <p class="pp-blog-excerpt">
+            Before planting your first seed, discover the core five hand tools that save effort, protect wrists, and help young shoots flourish.
+          </p>
+          <span class="pp-blog-read-more">
+            <span>Read Full Guide</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="pp-blog-card">
+        <div class="pp-blog-img-wrap">
+          <img
+            src="{{ 'kitchen-garden.webp' | asset_url }}"
+            alt="How to Start a Kitchen Garden at Home"
+            class="pp-blog-img"
+            width="380"
+            height="210"
+            loading="lazy"
+          >
+        </div>
+        <div class="pp-blog-content">
+          <span class="pp-blog-meta">Edible Greens • 6 min read</span>
+          <h3 class="pp-blog-title">How to Start a Kitchen Garden at Home</h3>
+          <p class="pp-blog-excerpt">
+            A comprehensive primer on sunlight calculation, potting soil aeration, and choosing rapid-harvest culinary herbs for city balconies.
+          </p>
+          <span class="pp-blog-read-more">
+            <span>Read Full Guide</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="pp-blog-card">
+        <div class="pp-blog-img-wrap">
+          <img
+            src="{{ 'cat_irrigation.webp' | asset_url }}"
+            alt="Choosing the Right Watering Equipment for Your Plants"
+            class="pp-blog-img"
+            width="380"
+            height="210"
+            loading="lazy"
+          >
+        </div>
+        <div class="pp-blog-content">
+          <span class="pp-blog-meta">Smart Irrigation • 5 min read</span>
+          <h3 class="pp-blog-title">Choosing the Right Watering Equipment for Your Plants</h3>
+          <p class="pp-blog-excerpt">
+            From gentle seedling mists to automated drip lines, learn how precision watering cuts water bills by 60% and prevents root rot.
+          </p>
+          <span class="pp-blog-read-more">
+            <span>Read Full Guide</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PedhPaudha Blog",
+  "settings": [],
+  "presets": [
+    {
+      "name": "PedhPaudha Blog"
+    }
+  ]
+}
+{% endschema %}

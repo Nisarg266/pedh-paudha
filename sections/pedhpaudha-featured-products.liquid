@@ -1,0 +1,143 @@
+{% comment %}
+  PedhPaudha featured products: plant nutrition, protection, planters and seasonal seeds.
+{% endcomment %}
+
+<section class="pp-products-section" id="products" aria-label="PedhPaudha Products">
+  <div class="pp-container">
+    <div class="pp-products-grid" id="pp-products-container">
+      <article class="pp-product-card" data-title="Flower Bloom" data-category="Plant Nutrition">
+        <div class="pp-prod-image-box">
+          <span class="pp-prod-badge">Flower Care</span>
+          <button class="pp-prod-wishlist" data-product-id="prod-1" aria-label="Add Flower Bloom to wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+          <img src="{{ 'pp-prod-flower-bloom.jpg' | asset_url }}" alt="Amber glass Flower Bloom bottle with a floral label" class="pp-prod-img" width="1254" height="1254" loading="lazy">
+        </div>
+        <div class="pp-prod-info">
+          <span class="pp-prod-category">Plant Nutrition</span>
+          <h3 class="pp-prod-title">Flower Bloom</h3>
+          <p class="pp-prod-tagline">A flower-care product in a 100 ml glass bottle.</p>
+          <div class="pp-prod-footer">
+            <span class="pp-prod-meta">100 ml · Glass bottle</span>
+            <a href="{{ routes.all_products_collection_url }}" class="pp-btn-product">Explore</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pp-product-card" data-title="Growth Promote" data-category="Plant Nutrition">
+        <div class="pp-prod-image-box">
+          <span class="pp-prod-badge">Plant Growth</span>
+          <button class="pp-prod-wishlist" data-product-id="prod-2" aria-label="Add Growth Promote to wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+          <img src="{{ 'pp-prod-growth-promote.jpg' | asset_url }}" alt="PedhPaudha Growth Promote plant growth enhancer bottle" class="pp-prod-img pp-prod-img--photo" width="1200" height="1600" loading="lazy">
+        </div>
+        <div class="pp-prod-info">
+          <span class="pp-prod-category">Plant Nutrition</span>
+          <h3 class="pp-prod-title">Growth Promote</h3>
+          <p class="pp-prod-tagline">PedhPaudha plant growth enhancer for home gardens.</p>
+          <div class="pp-prod-footer">
+            <span class="pp-prod-meta">100 ml bottle</span>
+            <a href="{{ routes.all_products_collection_url }}" class="pp-btn-product">Explore</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pp-product-card" data-title="360 Shield" data-category="Plant Protection">
+        <div class="pp-prod-image-box">
+          <span class="pp-prod-badge">Plant Protection</span>
+          <button class="pp-prod-wishlist" data-product-id="prod-3" aria-label="Add 360 Shield to wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+          <img src="{{ 'pp-prod-360-shield.jpg' | asset_url }}" alt="Amber 360 Shield plant-care bottle with a leaf shield emblem" class="pp-prod-img" width="1254" height="1254" loading="lazy">
+        </div>
+        <div class="pp-prod-info">
+          <span class="pp-prod-category">Plant Protection</span>
+          <h3 class="pp-prod-title">360 Shield</h3>
+          <p class="pp-prod-tagline">A dedicated plant-care product for your growing space.</p>
+          <div class="pp-prod-footer">
+            <span class="pp-prod-meta">Plant protection</span>
+            <a href="{{ routes.all_products_collection_url }}" class="pp-btn-product">Explore</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pp-product-card pp-product-card--coming-soon" data-title="Micronutrients" data-category="Micronutrients">
+        <div class="pp-prod-image-box pp-prod-image-box--placeholder" role="img" aria-label="Micronutrients 500 ml product image coming soon">
+          <span class="pp-prod-badge">Coming Soon</span>
+          <div class="pp-prod-placeholder-art" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none"><path d="M32 54V28m0 10c-12 0-19-7-19-18 12 0 19 7 19 18Zm0-7c0-12 7-19 19-19 0 12-7 19-19 19Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Product image<br>coming soon</span>
+          </div>
+        </div>
+        <div class="pp-prod-info">
+          <span class="pp-prod-category">Micronutrients</span>
+          <h3 class="pp-prod-title">Micronutrients</h3>
+          <p class="pp-prod-tagline">The 500 ml bottle is in development.</p>
+          <div class="pp-prod-footer">
+            <span class="pp-prod-meta pp-prod-meta--soon">500 ml · Coming soon</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pp-product-card" data-title="Planters" data-category="Planters">
+        <div class="pp-prod-image-box">
+          <span class="pp-prod-badge">Planters</span>
+          <button class="pp-prod-wishlist" data-product-id="prod-5" aria-label="Add planters to wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+          <img src="{{ 'pp-prod-planters.jpg' | asset_url }}" alt="Two colorful vertical planters filled with flowers and greenery" class="pp-prod-img pp-prod-img--photo" width="1200" height="1600" loading="lazy">
+        </div>
+        <div class="pp-prod-info">
+          <span class="pp-prod-category">Planters</span>
+          <h3 class="pp-prod-title">Planters</h3>
+          <p class="pp-prod-tagline">Colorful vertical planters for flowers and greenery.</p>
+          <div class="pp-prod-footer">
+            <span class="pp-prod-meta">For home gardens</span>
+            <a href="{{ routes.all_products_collection_url }}" class="pp-btn-product">Explore</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pp-product-card" data-title="Seasonal Fruit & Vegetable Seeds" data-category="Seasonal Seeds">
+        <div class="pp-prod-image-box">
+          <span class="pp-prod-badge">Seasonal</span>
+          <button class="pp-prod-wishlist" data-product-id="prod-6" aria-label="Add seasonal seeds to wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+          <img src="{{ 'pp-prod-seasonal-seeds.jpg' | asset_url }}" alt="Assortment of seasonal fruit and vegetable seed packets" class="pp-prod-img" width="1254" height="1254" loading="lazy">
+        </div>
+        <div class="pp-prod-info">
+          <span class="pp-prod-category">Seasonal Seeds</span>
+          <h3 class="pp-prod-title">Seasonal Fruit &amp; Vegetable Seeds</h3>
+          <p class="pp-prod-tagline">Seasonal varieties for fruit and vegetable gardens.</p>
+          <div class="pp-prod-footer">
+            <span class="pp-prod-meta">Grow from seed</span>
+            <a href="{{ routes.all_products_collection_url }}" class="pp-btn-product">Explore</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="pp-products-more">
+      <a href="{{ routes.all_products_collection_url }}" class="pp-btn-shop">
+        <span>View All Products</span>
+        <span class="pp-btn-arrow-circle" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PedhPaudha Products",
+  "settings": [],
+  "presets": [
+    {
+      "name": "PedhPaudha Products"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,43 @@
+{% comment %}
+  PedhPaudha Interactive Newsletter Section
+{% endcomment %}
+
+<section class="pp-newsletter-section" aria-label="Newsletter Subscription">
+  <div class="pp-container">
+    <div class="pp-newsletter-box">
+      <div class="pp-subheading-tag">JOIN THE PEDHPAUDHA CIRCLE</div>
+      <h2 class="pp-newsletter-heading">Let's Grow Something<br>Great Together.</h2>
+      <p class="pp-newsletter-sub">
+        Get seasonal planting guides, exclusive equipment previews and gardening tips delivered straight to your inbox.
+      </p>
+
+      <form id="pp-newsletter-form" class="pp-newsletter-form" novalidate>
+        <input
+          type="email"
+          id="pp-newsletter-email"
+          class="pp-newsletter-input"
+          placeholder="Enter your email address..."
+          required
+          aria-label="Email address"
+        >
+        <button type="submit" class="pp-newsletter-btn">
+          Join the Growing Community
+        </button>
+      </form>
+
+      <div id="pp-newsletter-feedback" class="pp-newsletter-feedback"></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PedhPaudha Newsletter",
+  "settings": [],
+  "presets": [
+    {
+      "name": "PedhPaudha Newsletter"
+    }
+  ]
+}
+{% endschema %}
