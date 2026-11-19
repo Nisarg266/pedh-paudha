@@ -2,25 +2,22 @@
   PedhPaudha Seasonal Editorial Banner
 {% endcomment %}
 
-<section class="pp-seasonal-section" aria-label="Seasonal Promotion">
+<section class="pp-seasonal-section" aria-label="{{ section.settings.accessibility_label | default: 'Seasonal Promotion' | escape }}">
   <div class="pp-container">
     <div class="pp-seasonal-banner">
-      <img
-        src="{{ 'seasonal-banner.webp' | asset_url }}"
-        alt="Lush green garden bathed in natural warm sunlight"
-        class="pp-seasonal-bg"
-        width="1200"
-        height="360"
-        loading="lazy"
-      >
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1800 | image_tag: class: 'pp-seasonal-bg', loading: 'lazy', alt: section.settings.image_alt }}
+      {% else %}
+        <img src="{{ 'seasonal-banner.webp' | asset_url }}" alt="{{ section.settings.image_alt | default: 'Lush green garden bathed in natural warm sunlight' | escape }}" class="pp-seasonal-bg" width="1200" height="360" loading="lazy">
+      {% endif %}
       <div class="pp-seasonal-overlay"></div>
       <div class="pp-seasonal-content">
-        <h2 class="pp-seasonal-heading">Make Space for<br>Something Green.</h2>
+        <h2 class="pp-seasonal-heading">{{ section.settings.heading_line_1 | default: 'Make Space for' | escape }}<br>{{ section.settings.heading_line_2 | default: 'Something Green.' | escape }}</h2>
         <p class="pp-seasonal-text">
-          From revitalizing your patio to planting seasonal blossoms, explore hand-selected tools and soil nutrition for your next growing season.
+          {{ section.settings.description | default: 'From revitalizing your patio to planting seasonal blossoms, explore hand-selected tools and soil nutrition for your next growing season.' | escape }}
         </p>
-        <a href="#collections" class="pp-btn-shop">
-          <span>Explore the Collection</span>
+        <a href="{{ section.settings.button_link | default: '#collections' }}" class="pp-btn-shop">
+          <span>{{ section.settings.button_label | default: 'Explore the Collection' | escape }}</span>
           <span class="pp-btn-arrow-circle">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
@@ -33,7 +30,16 @@
 {% schema %}
 {
   "name": "PedhPaudha Seasonal",
-  "settings": [],
+  "settings": [
+    { "type": "text", "id": "accessibility_label", "label": "Section description for accessibility", "default": "Seasonal Promotion" },
+    { "type": "image_picker", "id": "image", "label": "Banner image" },
+    { "type": "text", "id": "image_alt", "label": "Image description", "default": "Lush green garden bathed in natural warm sunlight" },
+    { "type": "text", "id": "heading_line_1", "label": "Heading line 1", "default": "Make Space for" },
+    { "type": "text", "id": "heading_line_2", "label": "Heading line 2", "default": "Something Green." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "From revitalizing your patio to planting seasonal blossoms, explore hand-selected tools and soil nutrition for your next growing season." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Explore the Collection" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
   "presets": [
     {
       "name": "PedhPaudha Seasonal"

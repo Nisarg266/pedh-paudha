@@ -1,101 +1,53 @@
-{% comment %}
-  PedhPaudha Beginner Gardening Starter Kits
-{% endcomment %}
-
-<section class="pp-kits-section" id="starter-kits" aria-label="Beginner Gardening Kits">
+{% comment %}Starter kit cards are backed by the selected Shopify collection.{% endcomment %}
+{% assign kit_collection = section.settings.collection | default: collections['starter-kits'] %}
+<section class="pp-kits-section" id="starter-kits" aria-label="{{ section.settings.accessibility_label | default: 'Starter kits' | escape }}">
   <div class="pp-container">
     <div class="pp-kits-header">
-      <div class="pp-subheading-tag">BEGINNER CORNER</div>
-      <h2 class="pp-section-title">New to Gardening? Start Here.</h2>
-      <p style="font-family:var(--pp-font-body); font-size:1.05rem; color:var(--pp-text-secondary); margin-top:8px;">
-        Everything you need to take your first step towards growing something green.
-      </p>
+      <div class="pp-subheading-tag">{{ section.settings.eyebrow | escape }}</div>
+      <h2 class="pp-section-title">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.description != blank %}<p class="pp-kits-description">{{ section.settings.description | escape }}</p>{% endif %}
     </div>
-
     <div class="pp-kits-grid">
-      <!-- Kit 1 -->
-      <div class="pp-kit-card">
-        <div class="pp-kit-img-box">
-          <img
-            src="{{ 'starter-kit.webp' | asset_url }}"
-            alt="Balcony Gardening Starter Kit"
-            class="pp-kit-img"
-            width="220"
-            height="180"
-            loading="lazy"
-          >
-        </div>
-        <h3 class="pp-kit-title">Balcony Gardening Starter Kit</h3>
-        <div class="pp-kit-price-row">
-          <span class="pp-kit-price">₹1,899</span>
-          <span class="pp-kit-orig">₹2,499</span>
-        </div>
-        <ul class="pp-kit-items">
-          <li>3 Breathable Fabric Grow Bags (12x12)</li>
-          <li>Enriched Organic Potting Soil (5 kg)</li>
-          <li>Ergonomic Hand Trowel & Precision Pruner</li>
-          <li>Organic Seaweed Liquid Plant Booster (500 ml)</li>
-        </ul>
-        <button class="pp-btn-shop pp-btn-add-cart" data-product-name="Balcony Gardening Starter Kit" style="width:100%; justify-content:center;">
-          <span>Add Kit to Cart</span>
-        </button>
-      </div>
-
-      <!-- Kit 2 -->
-      <div class="pp-kit-card">
-        <div class="pp-kit-img-box">
-          <img
-            src="{{ 'cat_soil_nutrition.webp' | asset_url }}"
-            alt="Kitchen Garden Starter Kit"
-            class="pp-kit-img"
-            width="180"
-            height="160"
-            loading="lazy"
-          >
-        </div>
-        <h3 class="pp-kit-title">Kitchen Garden Starter Kit</h3>
-        <div class="pp-kit-price-row">
-          <span class="pp-kit-price">₹2,299</span>
-          <span class="pp-kit-orig">₹2,999</span>
-        </div>
-        <ul class="pp-kit-items">
-          <li>5 Heirloom Non-GMO Vegetable Seed Packs</li>
-          <li>Biodegradable 50-Cell Seedling Plug Tray</li>
-          <li>Washed & Buffered Cocopeat Brick (5 kg)</li>
-          <li>Fine Mist Water Sprayer & Plant Identity Tags</li>
-        </ul>
-        <button class="pp-btn-shop pp-btn-add-cart" data-product-name="Kitchen Garden Starter Kit" style="width:100%; justify-content:center;">
-          <span>Add Kit to Cart</span>
-        </button>
-      </div>
-
-      <!-- Kit 3 -->
-      <div class="pp-kit-card">
-        <div class="pp-kit-img-box">
-          <img
-            src="{{ 'cat_garden_tools.webp' | asset_url }}"
-            alt="Plant Care Essentials Kit"
-            class="pp-kit-img"
-            width="180"
-            height="160"
-            loading="lazy"
-          >
-        </div>
-        <h3 class="pp-kit-title">Plant Care Essentials Kit</h3>
-        <div class="pp-kit-price-row">
-          <span class="pp-kit-price">₹1,299</span>
-          <span class="pp-kit-orig">₹1,699</span>
-        </div>
-        <ul class="pp-kit-items">
-          <li>Cold-Pressed Pure Neem Oil Spray (500 ml)</li>
-          <li>Instant Analog Soil Moisture & pH Meter</li>
-          <li>Stainless Floral Pruning Snips</li>
-          <li>Puncture-Resistant Nitrile Garden Work Gloves</li>
-        </ul>
-        <button class="pp-btn-shop pp-btn-add-cart" data-product-name="Plant Care Essentials Kit" style="width:100%; justify-content:center;">
-          <span>Add Kit to Cart</span>
-        </button>
-      </div>
+      {% if kit_collection != blank and kit_collection.products_count > 0 %}
+      {% for product in kit_collection.products limit: section.settings.products_to_show %}
+        <article class="pp-kit-card">
+          <a class="pp-kit-img-box" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+            {% if product.featured_image != blank %}{{ product.featured_image | image_url: width: 720 | image_tag: class: 'pp-kit-img', loading: 'lazy', alt: product.featured_image.alt | default: product.title }}{% endif %}
+          </a>
+          <h3 class="pp-kit-title"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+          <div class="pp-kit-price-row"><span class="pp-kit-price">{{ product.price | money }}</span>{% if product.compare_at_price > product.price %}<s class="pp-kit-orig">{{ product.compare_at_price | money }}</s>{% endif %}</div>
+          {% if product.description != blank %}<div class="pp-kit-description">{{ product.description | strip_html | truncate: 190 }}</div>{% endif %}
+          <form method="post" action="{{ routes.cart_add_url }}" class="pp-kit-add-form">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <button class="pp-btn-shop" type="submit"{% unless product.available %} disabled{% endunless %}>
+              <span>{% if product.available %}{{ section.settings.button_label | escape }}{% else %}{{ section.settings.sold_out_label | escape }}{% endif %}</span>
+            </button>
+          </form>
+        </article>
+      {% endfor %}
+      {% else %}
+        <article class="pp-kit-card">
+          <div class="pp-kit-img-box"><img src="{{ 'starter-kit.webp' | asset_url }}" alt="Balcony gardening starter kit" class="pp-kit-img" width="720" height="600" loading="lazy"></div>
+          <h3 class="pp-kit-title">Balcony Gardening Starter Kit</h3>
+          <div class="pp-kit-price-row"><span class="pp-kit-price">₹1,899</span><s class="pp-kit-orig">₹2,499</s></div>
+          <ul class="pp-kit-items"><li>3 Breathable Fabric Grow Bags (12x12)</li><li>Enriched Organic Potting Soil (5 kg)</li><li>Ergonomic Hand Trowel &amp; Precision Pruner</li><li>Organic Seaweed Liquid Plant Booster (500 ml)</li></ul>
+          <a class="pp-btn-shop" href="{{ routes.all_products_collection_url }}" style="width:100%;justify-content:center"><span>Explore Kit</span></a>
+        </article>
+        <article class="pp-kit-card">
+          <div class="pp-kit-img-box"><img src="{{ 'cat_soil_nutrition.webp' | asset_url }}" alt="Kitchen garden starter kit" class="pp-kit-img" width="720" height="600" loading="lazy"></div>
+          <h3 class="pp-kit-title">Kitchen Garden Starter Kit</h3>
+          <div class="pp-kit-price-row"><span class="pp-kit-price">₹2,299</span><s class="pp-kit-orig">₹2,999</s></div>
+          <ul class="pp-kit-items"><li>5 Heirloom Non-GMO Vegetable Seed Packs</li><li>Biodegradable 50-Cell Seedling Plug Tray</li><li>Washed &amp; Buffered Cocopeat Brick (5 kg)</li><li>Fine Mist Water Sprayer &amp; Plant Identity Tags</li></ul>
+          <a class="pp-btn-shop" href="{{ routes.all_products_collection_url }}" style="width:100%;justify-content:center"><span>Explore Kit</span></a>
+        </article>
+        <article class="pp-kit-card">
+          <div class="pp-kit-img-box"><img src="{{ 'cat_garden_tools.webp' | asset_url }}" alt="Plant care essentials kit" class="pp-kit-img" width="720" height="600" loading="lazy"></div>
+          <h3 class="pp-kit-title">Plant Care Essentials Kit</h3>
+          <div class="pp-kit-price-row"><span class="pp-kit-price">₹1,299</span><s class="pp-kit-orig">₹1,699</s></div>
+          <ul class="pp-kit-items"><li>Cold-Pressed Pure Neem Oil Spray (500 ml)</li><li>Instant Analog Soil Moisture &amp; pH Meter</li><li>Stainless Floral Pruning Snips</li><li>Puncture-Resistant Nitrile Garden Work Gloves</li></ul>
+          <a class="pp-btn-shop" href="{{ routes.all_products_collection_url }}" style="width:100%;justify-content:center"><span>Explore Kit</span></a>
+        </article>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -103,11 +55,16 @@
 {% schema %}
 {
   "name": "PedhPaudha Kits",
-  "settings": [],
-  "presets": [
-    {
-      "name": "PedhPaudha Kits"
-    }
-  ]
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Shopify starter-kit collection" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 1, "max": 8, "step": 1, "default": 3 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "BEGINNER CORNER" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "New to Gardening? Start Here." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Everything you need to take your first step towards growing something green." },
+    { "type": "text", "id": "accessibility_label", "label": "Section accessibility label", "default": "Beginner gardening kits" },
+    { "type": "text", "id": "button_label", "label": "Add button label", "default": "Add to Cart" },
+    { "type": "text", "id": "sold_out_label", "label": "Sold out label", "default": "Sold out" }
+  ],
+  "presets": [{ "name": "PedhPaudha Kits" }]
 }
 {% endschema %}

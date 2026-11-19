@@ -6,26 +6,54 @@
   class="pp-hero-section"
   aria-label="PedhPaudha featured collections"
   data-pp-hero
-  data-autoplay="true"
+  data-autoplay="{{ section.settings.autoplay }}"
 >
   <div class="pp-hero-slides" aria-live="off">
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        <article class="pp-hero-slide{% if forloop.first %} is-active{% endif %}" data-pp-slide aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"{% unless forloop.first %} hidden{% endunless %} {{ block.shopify_attributes }}>
+          <div class="pp-hero-inner pp-container">
+            <div class="pp-hero-content">
+              <p class="pp-hero-eyebrow"><span>{{ block.settings.eyebrow | escape }}</span><span class="pp-hero-eyebrow-line" aria-hidden="true"></span></p>
+              {% if forloop.first %}<h1 class="pp-hero-heading">{{ block.settings.heading_line_1 | escape }}<br>{{ block.settings.heading_line_2 | escape }} <em>{{ block.settings.emphasis | escape }}</em></h1>{% else %}<h2 class="pp-hero-heading">{{ block.settings.heading_line_1 | escape }}<br>{% if block.settings.heading_line_2 != blank %}{{ block.settings.heading_line_2 | escape }} {% endif %}<em>{{ block.settings.emphasis | escape }}</em></h2>{% endif %}
+              <p class="pp-hero-subtitle">{{ block.settings.description | escape }}</p>
+              <div class="pp-hero-actions">
+                <a href="{{ block.settings.button_link | default: routes.all_products_collection_url }}" class="pp-btn-shop"><span>{{ block.settings.button_label | escape }}</span><span class="pp-btn-arrow-circle" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+                <p class="pp-hero-supporting"><span aria-hidden="true">{{ block.settings.supporting_icon | escape }}</span> {{ block.settings.supporting | escape }}</p>
+              </div>
+            </div>
+            <div class="pp-hero-visual-wrapper">
+              <picture class="pp-hero-picture">
+                {% if block.settings.mobile_image != blank %}<source media="(max-width: 768px)" srcset="{{ block.settings.mobile_image | image_url: width: 1400 }}">{% elsif block.settings.mobile_asset != blank %}<source media="(max-width: 768px)" srcset="{{ block.settings.mobile_asset | asset_url }}">{% endif %}
+                {% if block.settings.desktop_image != blank %}
+                  {% if forloop.first %}{{ block.settings.desktop_image | image_url: width: 2600 | image_tag: class: 'pp-hero-visual-img', loading: 'eager', fetchpriority: 'high', alt: block.settings.image_alt }}{% else %}{{ block.settings.desktop_image | image_url: width: 2600 | image_tag: class: 'pp-hero-visual-img', loading: 'lazy', alt: block.settings.image_alt }}{% endif %}
+                {% elsif block.settings.desktop_asset != blank %}
+                  <img src="{{ block.settings.desktop_asset | asset_url }}" alt="{{ block.settings.image_alt | escape }}" class="pp-hero-visual-img" width="1672" height="941" {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+                {% endif %}
+              </picture>
+              <a class="pp-hero-mobile-cta pp-hero-mobile-cta--{{ block.settings.mobile_cta_position | default: '1' }}" href="{{ block.settings.button_link | default: routes.all_products_collection_url }}" aria-label="{{ block.settings.button_label | escape }}"></a>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    {% else %}
     <article class="pp-hero-slide is-active" data-pp-slide aria-hidden="false">
       <div class="pp-hero-inner pp-container">
         <div class="pp-hero-content">
-          <p class="pp-hero-eyebrow"><span>THE ART OF GROWING</span><span class="pp-hero-eyebrow-line" aria-hidden="true"></span></p>
-          <h1 class="pp-hero-heading">Everything You<br>Need to <em>Grow.</em></h1>
-          <p class="pp-hero-subtitle">From a tiny seed to a beautiful garden. Discover thoughtfully crafted tools, smart irrigation, and powerful equipment for every green space.</p>
+          <p class="pp-hero-eyebrow"><span>{{ section.settings.slide_1_eyebrow | default: 'THE ART OF GROWING' | escape }}</span><span class="pp-hero-eyebrow-line" aria-hidden="true"></span></p>
+          <h1 class="pp-hero-heading">{{ section.settings.slide_1_heading_line_1 | default: 'Everything You' | escape }}<br>{{ section.settings.slide_1_heading_line_2 | default: 'Need to' | escape }} <em>{{ section.settings.slide_1_emphasis | default: 'Grow.' | escape }}</em></h1>
+          <p class="pp-hero-subtitle">{{ section.settings.slide_1_description | default: 'From a tiny seed to a beautiful garden. Discover thoughtfully crafted tools, smart irrigation, and powerful equipment for every green space.' | escape }}</p>
           <div class="pp-hero-actions">
-            <a href="/collections/all" class="pp-btn-shop" aria-label="Shop all gardening products"><span>Shop Now</span><span class="pp-btn-arrow-circle" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
-            <p class="pp-hero-supporting"><span aria-hidden="true">🌱</span> For every grower. For every green space.</p>
+            <a href="{{ section.settings.slide_1_button_link | default: routes.all_products_collection_url }}" class="pp-btn-shop" aria-label="{{ section.settings.slide_1_button_label | default: 'Shop all gardening products' | escape }}"><span>{{ section.settings.slide_1_button_label | default: 'Shop Now' | escape }}</span><span class="pp-btn-arrow-circle" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+            <p class="pp-hero-supporting"><span aria-hidden="true">🌱</span> {{ section.settings.slide_1_supporting | default: 'For every grower. For every green space.' | escape }}</p>
           </div>
         </div>
         <div class="pp-hero-visual-wrapper">
           <picture class="pp-hero-picture">
-            <source media="(max-width: 768px)" srcset="{{ 'pedhpaudha-mobile-slide-1.jpg' | asset_url }}">
-            <img src="{{ 'pedhpaudha-fullscreen-slide-1.jpg' | asset_url }}" alt="Sunlit home garden with lush tropical plants, elegant planters, and gardening essentials" class="pp-hero-visual-img" width="1672" height="941" fetchpriority="high">
+            {% if section.settings.slide_1_mobile_image != blank %}<source media="(max-width: 768px)" srcset="{{ section.settings.slide_1_mobile_image | image_url: width: 1200 }}">{% else %}<source media="(max-width: 768px)" srcset="{{ 'pedhpaudha-mobile-slide-1.jpg' | asset_url }}">{% endif %}
+            {% if section.settings.slide_1_desktop_image != blank %}{{ section.settings.slide_1_desktop_image | image_url: width: 2400 | image_tag: class: 'pp-hero-visual-img', loading: 'eager', fetchpriority: 'high', alt: section.settings.slide_1_image_alt }}{% else %}<img src="{{ 'pedhpaudha-fullscreen-slide-1.jpg' | asset_url }}" alt="{{ section.settings.slide_1_image_alt | default: 'Sunlit home garden with lush tropical plants, elegant planters, and gardening essentials' | escape }}" class="pp-hero-visual-img" width="1672" height="941" fetchpriority="high">{% endif %}
           </picture>
-          <a class="pp-hero-mobile-cta pp-hero-mobile-cta--1" href="/collections/all" aria-label="Shop Now"></a>
+          <a class="pp-hero-mobile-cta pp-hero-mobile-cta--1" href="{{ routes.all_products_collection_url }}" aria-label="Shop Now"></a>
         </div>
       </div>
     </article>
@@ -33,18 +61,18 @@
     <article class="pp-hero-slide" data-pp-slide aria-hidden="true" hidden>
       <div class="pp-hero-inner pp-container">
         <div class="pp-hero-content">
-          <p class="pp-hero-eyebrow"><span>GROW SOMETHING GOOD</span><span class="pp-hero-eyebrow-line" aria-hidden="true"></span></p>
-          <h2 class="pp-hero-heading">Your Own Little<br><em>Harvest.</em></h2>
-          <p class="pp-hero-subtitle">Turn a sunny corner into a kitchen garden. Find the seeds, planters, and essentials that make growing at home feel simple.</p>
+          <p class="pp-hero-eyebrow"><span>{{ section.settings.slide_2_eyebrow | default: 'GROW SOMETHING GOOD' | escape }}</span><span class="pp-hero-eyebrow-line" aria-hidden="true"></span></p>
+          <h2 class="pp-hero-heading">{{ section.settings.slide_2_heading_line_1 | default: 'Your Own Little' | escape }}<br><em>{{ section.settings.slide_2_emphasis | default: 'Harvest.' | escape }}</em></h2>
+          <p class="pp-hero-subtitle">{{ section.settings.slide_2_description | default: 'Turn a sunny corner into a kitchen garden. Find the seeds, planters, and essentials that make growing at home feel simple.' | escape }}</p>
           <div class="pp-hero-actions">
-            <a href="#category-plants" class="pp-btn-shop"><span>Start Growing</span><span class="pp-btn-arrow-circle" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
-            <p class="pp-hero-supporting"><span aria-hidden="true">🌿</span> Fresh-picked joy, right at home.</p>
+            <a href="{{ section.settings.slide_2_button_link | default: '#category-plants' }}" class="pp-btn-shop"><span>{{ section.settings.slide_2_button_label | default: 'Start Growing' | escape }}</span><span class="pp-btn-arrow-circle" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+            <p class="pp-hero-supporting"><span aria-hidden="true">🌿</span> {{ section.settings.slide_2_supporting | default: 'Fresh-picked joy, right at home.' | escape }}</p>
           </div>
         </div>
         <div class="pp-hero-visual-wrapper">
           <picture class="pp-hero-picture">
-            <source media="(max-width: 768px)" srcset="{{ 'pedhpaudha-mobile-slide-2.jpg' | asset_url }}">
-            <img src="{{ 'pedhpaudha-fullscreen-slide-2.jpg' | asset_url }}" alt="A thriving kitchen garden with fresh herbs, greens, and tomatoes" class="pp-hero-visual-img" width="1672" height="941" loading="lazy">
+            {% if section.settings.slide_2_mobile_image != blank %}<source media="(max-width: 768px)" srcset="{{ section.settings.slide_2_mobile_image | image_url: width: 1200 }}">{% else %}<source media="(max-width: 768px)" srcset="{{ 'pedhpaudha-mobile-slide-2.jpg' | asset_url }}">{% endif %}
+            {% if section.settings.slide_2_desktop_image != blank %}{{ section.settings.slide_2_desktop_image | image_url: width: 2400 | image_tag: class: 'pp-hero-visual-img', loading: 'lazy', alt: section.settings.slide_2_image_alt }}{% else %}<img src="{{ 'pedhpaudha-fullscreen-slide-2.jpg' | asset_url }}" alt="{{ section.settings.slide_2_image_alt | default: 'A thriving kitchen garden with fresh herbs, greens, and tomatoes' | escape }}" class="pp-hero-visual-img" width="1672" height="941" loading="lazy">{% endif %}
           </picture>
           <a class="pp-hero-mobile-cta pp-hero-mobile-cta--2" href="#category-plants" aria-label="Start Growing"></a>
         </div>
@@ -54,33 +82,38 @@
     <article class="pp-hero-slide" data-pp-slide aria-hidden="true" hidden>
       <div class="pp-hero-inner pp-container">
         <div class="pp-hero-content">
-          <p class="pp-hero-eyebrow"><span>TOOLS THAT WORK AS HARD AS YOU</span><span class="pp-hero-eyebrow-line" aria-hidden="true"></span></p>
-          <h2 class="pp-hero-heading">Make Every<br>Garden <em>Thrive.</em></h2>
-          <p class="pp-hero-subtitle">From everyday hand tools to powerful lawn care, get dependable equipment that helps you do more outdoors.</p>
+          <p class="pp-hero-eyebrow"><span>{{ section.settings.slide_3_eyebrow | default: 'TOOLS THAT WORK AS HARD AS YOU' | escape }}</span><span class="pp-hero-eyebrow-line" aria-hidden="true"></span></p>
+          <h2 class="pp-hero-heading">{{ section.settings.slide_3_heading_line_1 | default: 'Make Every' | escape }}<br>{{ section.settings.slide_3_heading_line_2 | default: 'Garden' | escape }} <em>{{ section.settings.slide_3_emphasis | default: 'Thrive.' | escape }}</em></h2>
+          <p class="pp-hero-subtitle">{{ section.settings.slide_3_description | default: 'From everyday hand tools to powerful lawn care, get dependable equipment that helps you do more outdoors.' | escape }}</p>
           <div class="pp-hero-actions">
-            <a href="#category-tools" class="pp-btn-shop"><span>Explore Garden Tools</span><span class="pp-btn-arrow-circle" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
-            <p class="pp-hero-supporting"><span aria-hidden="true">🛠️</span> Trusted essentials for every season.</p>
+            <a href="{{ section.settings.slide_3_button_link | default: '#category-tools' }}" class="pp-btn-shop"><span>{{ section.settings.slide_3_button_label | default: 'Explore Garden Tools' | escape }}</span><span class="pp-btn-arrow-circle" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+            <p class="pp-hero-supporting"><span aria-hidden="true">🛠️</span> {{ section.settings.slide_3_supporting | default: 'Trusted essentials for every season.' | escape }}</p>
           </div>
         </div>
         <div class="pp-hero-visual-wrapper">
           <picture class="pp-hero-picture">
-            <source media="(max-width: 768px)" srcset="{{ 'pedhpaudha-mobile-slide-3.jpg' | asset_url }}">
-            <img src="{{ 'pedhpaudha-fullscreen-slide-3.jpg' | asset_url }}" alt="A garden mower and hand tools in a fresh green home garden" class="pp-hero-visual-img" width="1672" height="941" loading="lazy">
+            {% if section.settings.slide_3_mobile_image != blank %}<source media="(max-width: 768px)" srcset="{{ section.settings.slide_3_mobile_image | image_url: width: 1200 }}">{% else %}<source media="(max-width: 768px)" srcset="{{ 'pedhpaudha-mobile-slide-3.jpg' | asset_url }}">{% endif %}
+            {% if section.settings.slide_3_desktop_image != blank %}{{ section.settings.slide_3_desktop_image | image_url: width: 2400 | image_tag: class: 'pp-hero-visual-img', loading: 'lazy', alt: section.settings.slide_3_image_alt }}{% else %}<img src="{{ 'pedhpaudha-fullscreen-slide-3.jpg' | asset_url }}" alt="{{ section.settings.slide_3_image_alt | default: 'A garden mower and hand tools in a fresh green home garden' | escape }}" class="pp-hero-visual-img" width="1672" height="941" loading="lazy">{% endif %}
           </picture>
           <a class="pp-hero-mobile-cta pp-hero-mobile-cta--3" href="#category-tools" aria-label="Explore Garden Tools"></a>
         </div>
       </div>
     </article>
+    {% endif %}
   </div>
 
   <div class="pp-hero-controls pp-container" aria-label="Slideshow controls">
     <div class="pp-hero-pagination" role="group" aria-label="Choose a slide">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}<button class="pp-hero-dot{% if forloop.first %} is-active{% endif %}" type="button" aria-label="Show slide {{ forloop.index }} of {{ section.blocks.size }}"{% if forloop.first %} aria-current="true"{% endif %} data-pp-dot="{{ forloop.index0 }}"></button>{% endfor %}
+      {% else %}
       <button class="pp-hero-dot is-active" type="button" aria-label="Show slide 1 of 3" aria-current="true" data-pp-dot="0"></button>
       <button class="pp-hero-dot" type="button" aria-label="Show slide 2 of 3" data-pp-dot="1"></button>
       <button class="pp-hero-dot" type="button" aria-label="Show slide 3 of 3" data-pp-dot="2"></button>
+      {% endif %}
     </div>
     <div class="pp-hero-control-actions">
-      <span class="pp-hero-slide-count"><strong data-pp-current>01</strong><span aria-hidden="true"> / </span>03</span>
+      <span class="pp-hero-slide-count"><strong data-pp-current>01</strong><span aria-hidden="true"> / </span>{% if section.blocks.size > 0 %}{{ section.blocks.size | prepend: '0' }}{% else %}03{% endif %}</span>
       <button class="pp-hero-arrow" type="button" aria-label="Previous slide" data-pp-prev><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
       <button class="pp-hero-arrow" type="button" aria-label="Next slide" data-pp-next><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
@@ -92,10 +125,373 @@
 {% schema %}
 {
   "name": "PedhPaudha Hero Slideshow",
-  "settings": [],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Automatically advance slides",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Fallback slide content"
+    },
+    {
+      "type": "paragraph",
+      "content": "These settings are used only when the slideshow has no slide blocks."
+    },
+    {
+      "type": "text",
+      "id": "slide_1_eyebrow",
+      "label": "Slide 1 eyebrow",
+      "default": "THE ART OF GROWING"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_heading_line_1",
+      "label": "Slide 1 heading, line 1",
+      "default": "Everything You"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_heading_line_2",
+      "label": "Slide 1 heading, line 2",
+      "default": "Need to"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_emphasis",
+      "label": "Slide 1 highlighted heading",
+      "default": "Grow."
+    },
+    {
+      "type": "textarea",
+      "id": "slide_1_description",
+      "label": "Slide 1 description",
+      "default": "From a tiny seed to a beautiful garden. Discover thoughtfully crafted tools, smart irrigation, and powerful equipment for every green space."
+    },
+    {
+      "type": "text",
+      "id": "slide_1_button_label",
+      "label": "Slide 1 button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "slide_1_button_link",
+      "label": "Slide 1 button link"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_supporting",
+      "label": "Slide 1 supporting note",
+      "default": "For every grower. For every green space."
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_1_mobile_image",
+      "label": "Slide 1 mobile image"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_1_desktop_image",
+      "label": "Slide 1 desktop image"
+    },
+    {
+      "type": "text",
+      "id": "slide_1_image_alt",
+      "label": "Slide 1 image description",
+      "default": "Sunlit home garden with lush tropical plants, elegant planters, and gardening essentials"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_eyebrow",
+      "label": "Slide 2 eyebrow",
+      "default": "GROW SOMETHING GOOD"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_heading_line_1",
+      "label": "Slide 2 heading, line 1",
+      "default": "Your Own Little"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_emphasis",
+      "label": "Slide 2 highlighted heading",
+      "default": "Harvest."
+    },
+    {
+      "type": "textarea",
+      "id": "slide_2_description",
+      "label": "Slide 2 description",
+      "default": "Turn a sunny corner into a kitchen garden. Find the seeds, planters, and essentials that make growing at home feel simple."
+    },
+    {
+      "type": "text",
+      "id": "slide_2_button_label",
+      "label": "Slide 2 button label",
+      "default": "Start Growing"
+    },
+    {
+      "type": "url",
+      "id": "slide_2_button_link",
+      "label": "Slide 2 button link"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_supporting",
+      "label": "Slide 2 supporting note",
+      "default": "Fresh-picked joy, right at home."
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2_mobile_image",
+      "label": "Slide 2 mobile image"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2_desktop_image",
+      "label": "Slide 2 desktop image"
+    },
+    {
+      "type": "text",
+      "id": "slide_2_image_alt",
+      "label": "Slide 2 image description",
+      "default": "A thriving kitchen garden with fresh herbs, greens, and tomatoes"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_eyebrow",
+      "label": "Slide 3 eyebrow",
+      "default": "TOOLS THAT WORK AS HARD AS YOU"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_heading_line_1",
+      "label": "Slide 3 heading, line 1",
+      "default": "Make Every"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_heading_line_2",
+      "label": "Slide 3 heading, line 2",
+      "default": "Garden"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_emphasis",
+      "label": "Slide 3 highlighted heading",
+      "default": "Thrive."
+    },
+    {
+      "type": "textarea",
+      "id": "slide_3_description",
+      "label": "Slide 3 description",
+      "default": "From everyday hand tools to powerful lawn care, get dependable equipment that helps you do more outdoors."
+    },
+    {
+      "type": "text",
+      "id": "slide_3_button_label",
+      "label": "Slide 3 button label",
+      "default": "Explore Garden Tools"
+    },
+    {
+      "type": "url",
+      "id": "slide_3_button_link",
+      "label": "Slide 3 button link"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_supporting",
+      "label": "Slide 3 supporting note",
+      "default": "Trusted essentials for every season."
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3_mobile_image",
+      "label": "Slide 3 mobile image"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3_desktop_image",
+      "label": "Slide 3 desktop image"
+    },
+    {
+      "type": "text",
+      "id": "slide_3_image_alt",
+      "label": "Slide 3 image description",
+      "default": "A garden mower and hand tools in a fresh green home garden"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero_slide",
+      "name": "Hero slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "GROW SOMETHING GOOD"
+        },
+        {
+          "type": "text",
+          "id": "heading_line_1",
+          "label": "Heading line 1",
+          "default": "Grow a"
+        },
+        {
+          "type": "text",
+          "id": "heading_line_2",
+          "label": "Heading line 2",
+          "default": "garden that"
+        },
+        {
+          "type": "text",
+          "id": "emphasis",
+          "label": "Emphasized heading",
+          "default": "thrives."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Discover thoughtful essentials to help your garden thrive."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Start Growing"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "supporting_icon",
+          "label": "Supporting icon or emoji",
+          "default": "🌱"
+        },
+        {
+          "type": "text",
+          "id": "supporting",
+          "label": "Supporting note",
+          "default": "For every grower. For every green space."
+        },
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Phone image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image description",
+          "default": "A lush green home garden"
+        },
+        {
+          "type": "text",
+          "id": "desktop_asset",
+          "label": "Desktop theme asset fallback",
+          "info": "Optional image filename from theme assets"
+        },
+        {
+          "type": "text",
+          "id": "mobile_asset",
+          "label": "Phone theme asset fallback",
+          "info": "Optional image filename from theme assets"
+        },
+        {
+          "type": "select",
+          "id": "mobile_cta_position",
+          "label": "Phone button hotspot position",
+          "default": "1",
+          "options": [
+            {
+              "value": "1",
+              "label": "Left upper"
+            },
+            {
+              "value": "2",
+              "label": "Left middle"
+            },
+            {
+              "value": "3",
+              "label": "Left lower"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
   "presets": [
     {
-      "name": "PedhPaudha Hero Slideshow"
+      "name": "PedhPaudha Hero Slideshow",
+      "blocks": [
+        {
+          "type": "hero_slide",
+          "settings": {
+            "eyebrow": "THE ART OF GROWING",
+            "heading_line_1": "Everything You",
+            "heading_line_2": "Need to",
+            "emphasis": "Grow.",
+            "description": "From a tiny seed to a beautiful garden. Discover thoughtfully crafted tools, smart irrigation, and powerful equipment for every green space.",
+            "button_label": "Shop Now",
+            "supporting_icon": "🌱",
+            "supporting": "For every grower. For every green space.",
+            "image_alt": "Sunlit home garden with lush tropical plants, elegant planters, and gardening essentials",
+            "desktop_asset": "pedhpaudha-fullscreen-slide-1.jpg",
+            "mobile_asset": "pedhpaudha-mobile-slide-1.jpg",
+            "mobile_cta_position": "1"
+          }
+        },
+        {
+          "type": "hero_slide",
+          "settings": {
+            "eyebrow": "GROW SOMETHING GOOD",
+            "heading_line_1": "Your Own Little",
+            "heading_line_2": "",
+            "emphasis": "Harvest.",
+            "description": "Turn a sunny corner into a kitchen garden. Find the seeds, planters, and essentials that make growing at home feel simple.",
+            "button_label": "Start Growing",
+            "button_link": "#category-plants",
+            "supporting_icon": "🌿",
+            "supporting": "Fresh-picked joy, right at home.",
+            "image_alt": "A thriving kitchen garden with fresh herbs, greens, and tomatoes",
+            "desktop_asset": "pedhpaudha-fullscreen-slide-2.jpg",
+            "mobile_asset": "pedhpaudha-mobile-slide-2.jpg",
+            "mobile_cta_position": "2"
+          }
+        },
+        {
+          "type": "hero_slide",
+          "settings": {
+            "eyebrow": "TOOLS THAT WORK AS HARD AS YOU",
+            "heading_line_1": "Make Every",
+            "heading_line_2": "Garden",
+            "emphasis": "Thrive.",
+            "description": "From everyday hand tools to powerful lawn care, get dependable equipment that helps you do more outdoors.",
+            "button_label": "Explore Garden Tools",
+            "button_link": "#category-tools",
+            "supporting_icon": "🛠️",
+            "supporting": "Trusted essentials for every season.",
+            "image_alt": "A garden mower and hand tools in a fresh green home garden",
+            "desktop_asset": "pedhpaudha-fullscreen-slide-3.jpg",
+            "mobile_asset": "pedhpaudha-mobile-slide-3.jpg",
+            "mobile_cta_position": "3"
+          }
+        }
+      ]
     }
   ]
 }

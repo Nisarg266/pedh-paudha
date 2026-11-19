@@ -2,11 +2,142 @@
   "sections": {
     "pedhpaudha_hero": {
       "type": "pedhpaudha-hero",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "slide_1": {
+          "type": "hero_slide",
+          "settings": {
+            "eyebrow": "THE ART OF GROWING",
+            "heading_line_1": "Everything You",
+            "heading_line_2": "Need to",
+            "emphasis": "Grow.",
+            "description": "From a tiny seed to a beautiful garden. Discover thoughtfully crafted tools, smart irrigation, and powerful equipment for every green space.",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "supporting_icon": "🌱",
+            "supporting": "For every grower. For every green space.",
+            "image_alt": "Sunlit home garden with lush tropical plants, elegant planters, and gardening essentials",
+            "desktop_asset": "pedhpaudha-fullscreen-slide-1.jpg",
+            "mobile_asset": "pedhpaudha-mobile-slide-1.jpg",
+            "mobile_cta_position": "1"
+          }
+        },
+        "slide_2": {
+          "type": "hero_slide",
+          "settings": {
+            "eyebrow": "GROW SOMETHING GOOD",
+            "heading_line_1": "Your Own Little",
+            "heading_line_2": "",
+            "emphasis": "Harvest.",
+            "description": "Turn a sunny corner into a kitchen garden. Find the seeds, planters, and essentials that make growing at home feel simple.",
+            "button_label": "Start Growing",
+            "button_link": "#category-plants",
+            "supporting_icon": "🌿",
+            "supporting": "Fresh-picked joy, right at home.",
+            "image_alt": "A thriving kitchen garden with fresh herbs, greens, and tomatoes",
+            "desktop_asset": "pedhpaudha-fullscreen-slide-2.jpg",
+            "mobile_asset": "pedhpaudha-mobile-slide-2.jpg",
+            "mobile_cta_position": "2"
+          }
+        },
+        "slide_3": {
+          "type": "hero_slide",
+          "settings": {
+            "eyebrow": "TOOLS THAT WORK AS HARD AS YOU",
+            "heading_line_1": "Make Every",
+            "heading_line_2": "Garden",
+            "emphasis": "Thrive.",
+            "description": "From everyday hand tools to powerful lawn care, get dependable equipment that helps you do more outdoors.",
+            "button_label": "Explore Garden Tools",
+            "button_link": "#category-tools",
+            "supporting_icon": "🛠️",
+            "supporting": "Trusted essentials for every season.",
+            "image_alt": "A garden mower and hand tools in a fresh green home garden",
+            "desktop_asset": "pedhpaudha-fullscreen-slide-3.jpg",
+            "mobile_asset": "pedhpaudha-mobile-slide-3.jpg",
+            "mobile_cta_position": "3"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ]
     },
     "pedhpaudha_categories": {
       "type": "pedhpaudha-categories",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "category_01": {
+          "type": "category",
+          "settings": {
+            "title": "Plants & Seeds",
+            "fallback_asset": "cat_plants_seeds.webp",
+            "image_alt": "Plants and seeds",
+            "anchor_id": "category-plants",
+            "link": ""
+          }
+        },
+        "category_02": {
+          "type": "category",
+          "settings": {
+            "title": "Garden Tools",
+            "fallback_asset": "cat_garden_tools.webp",
+            "image_alt": "Garden tools",
+            "anchor_id": "category-tools",
+            "link": ""
+          }
+        },
+        "category_03": {
+          "type": "category",
+          "settings": {
+            "title": "Machines",
+            "fallback_asset": "cat_machines.webp",
+            "image_alt": "Garden machines",
+            "anchor_id": "category-machines",
+            "link": ""
+          }
+        },
+        "category_04": {
+          "type": "category",
+          "settings": {
+            "title": "Irrigation",
+            "fallback_asset": "cat_irrigation.webp",
+            "image_alt": "Watering and irrigation equipment",
+            "anchor_id": "category-irrigation",
+            "link": ""
+          }
+        },
+        "category_05": {
+          "type": "category",
+          "settings": {
+            "title": "Soil & Nutrition",
+            "fallback_asset": "cat_soil_nutrition.webp",
+            "image_alt": "Soil and plant nutrition",
+            "anchor_id": "category-soil",
+            "link": ""
+          }
+        },
+        "category_06": {
+          "type": "category",
+          "settings": {
+            "title": "Pots & Planters",
+            "fallback_asset": "cat_pots_planters.webp",
+            "image_alt": "Pots and planters",
+            "anchor_id": "category-pots",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_01",
+        "category_02",
+        "category_03",
+        "category_04",
+        "category_05",
+        "category_06"
+      ]
     },
     "pedhpaudha_search": {
       "type": "pedhpaudha-search",
@@ -18,11 +149,116 @@
     },
     "pedhpaudha_machinery": {
       "type": "pedhpaudha-machinery",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "journey_step_01": {
+          "type": "journey_step",
+          "settings": {
+            "icon": "seed",
+            "title": "Make room",
+            "description": "Choose a sunny corner, a container, and a plant you love."
+          }
+        },
+        "journey_step_02": {
+          "type": "journey_step",
+          "settings": {
+            "icon": "water",
+            "title": "Nourish gently",
+            "description": "Keep watering steady and give roots the care they need."
+          }
+        },
+        "journey_step_03": {
+          "type": "journey_step",
+          "settings": {
+            "icon": "bloom",
+            "title": "Watch it flourish",
+            "description": "Stay curious, notice new growth, and enjoy the little wins."
+          }
+        }
+      },
+      "block_order": [
+        "journey_step_01",
+        "journey_step_02",
+        "journey_step_03"
+      ]
     },
     "pedhpaudha_growing_goals": {
       "type": "pedhpaudha-growing-goals",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "goal_01": {
+          "type": "goal",
+          "settings": {
+            "layout_area": "home",
+            "fallback_asset": "home-garden.webp",
+            "image_alt": "A flourishing home garden",
+            "kicker": "HOME GARDEN",
+            "title": "Start a Home Garden",
+            "description": "Create a calm green corner with beginner-friendly essentials.",
+            "link_label": "Discover essentials",
+            "link": "#collections"
+          }
+        },
+        "goal_02": {
+          "type": "goal",
+          "settings": {
+            "layout_area": "kitchen",
+            "fallback_asset": "kitchen-garden.webp",
+            "image_alt": "Fresh vegetables growing in a kitchen garden",
+            "kicker": "GROW AT HOME",
+            "title": "Build a Kitchen Garden",
+            "description": "Grow fresh herbs and seasonal vegetables at home.",
+            "link_label": "Discover essentials",
+            "link": "#collections"
+          }
+        },
+        "goal_03": {
+          "type": "goal",
+          "settings": {
+            "layout_area": "feature",
+            "fallback_asset": "pp-vertical-planters-feature.webp",
+            "image_alt": "Colorful vertical tower planters filled with flowers",
+            "kicker": "MAKE ROOM TO GROW",
+            "title": "Grow Up. Grow Beautiful.",
+            "description": "Bring a whole garden to even the smallest space.",
+            "link_label": "Explore planters",
+            "link": "#products"
+          }
+        },
+        "goal_04": {
+          "type": "goal",
+          "settings": {
+            "layout_area": "lawn",
+            "fallback_asset": "lawn-care.webp",
+            "image_alt": "A neatly maintained green lawn",
+            "kicker": "OUTDOOR CARE",
+            "title": "Maintain a Beautiful Lawn",
+            "description": "Keep your lawn lush, green and beautifully cared for.",
+            "link_label": "Explore lawn care",
+            "link": "#machinery"
+          }
+        },
+        "goal_05": {
+          "type": "goal",
+          "settings": {
+            "layout_area": "nursery",
+            "fallback_asset": "nursery-growing.webp",
+            "image_alt": "Colorful flowers growing in a nursery",
+            "kicker": "GROWING BUSINESS",
+            "title": "Grow a Nursery",
+            "description": "Build a thriving nursery with dependable growing essentials.",
+            "link_label": "Discover essentials",
+            "link": "#collections"
+          }
+        }
+      },
+      "block_order": [
+        "goal_01",
+        "goal_02",
+        "goal_03",
+        "goal_04",
+        "goal_05"
+      ]
     },
     "pedhpaudha_starter_kits": {
       "type": "pedhpaudha-starter-kits",
@@ -30,7 +266,47 @@
     },
     "pedhpaudha_why_us": {
       "type": "pedhpaudha-why-us",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "benefit_01": {
+          "type": "benefit",
+          "settings": {
+            "icon": "tool",
+            "title": "Tools for Every Grower",
+            "description": "Ergonomic essentials tailored for beginner window-sill pots to multi-acre farm orchards."
+          }
+        },
+        "benefit_02": {
+          "type": "benefit",
+          "settings": {
+            "icon": "clock",
+            "title": "Complete Growing Solutions",
+            "description": "From soil preparation and seed starting to smart irrigation and organic pest defense."
+          }
+        },
+        "benefit_03": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield",
+            "title": "Practical Equipment",
+            "description": "Rust-resistant forged metals, UV-stabilized virgin plastics and dependable electric motors."
+          }
+        },
+        "benefit_04": {
+          "type": "benefit",
+          "settings": {
+            "icon": "compass",
+            "title": "One Place to Explore More",
+            "description": "Discover curated collections matched to diverse Indian climates and growing seasons."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_01",
+        "benefit_02",
+        "benefit_03",
+        "benefit_04"
+      ]
     },
     "pedhpaudha_blog": {
       "type": "pedhpaudha-blog",

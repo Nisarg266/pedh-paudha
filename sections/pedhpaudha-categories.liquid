@@ -10,11 +10,11 @@
   <div class="pp-container">
     <div class="pp-categories-header">
       <div>
-        <div class="pp-subheading-tag">SHOP BY CATEGORY</div>
-        <h2 class="pp-section-title">Explore Our Collections</h2>
+        <div class="pp-subheading-tag">{{ section.settings.eyebrow | default: 'SHOP BY CATEGORY' | escape }}</div>
+        <h2 class="pp-section-title">{{ section.settings.heading | default: 'Explore Our Collections' | escape }}</h2>
       </div>
-      <a href="{{ routes.collections_url }}" class="pp-view-all-link" aria-label="View more categories">
-        <span>View More</span>
+      <a href="{{ section.settings.view_all_link | default: routes.collections_url }}" class="pp-view-all-link" aria-label="{{ section.settings.view_all_label | default: 'View more categories' | escape }}">
+        <span>{{ section.settings.view_all_label | default: 'View More' | escape }}</span>
         <span class="pp-view-all-circle">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
@@ -29,6 +29,20 @@
       </button>
 
       <div class="pp-categories-grid pp-categories-slider" id="pp-cat-slider">
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+            <a href="{% if block.settings.link != blank %}{{ block.settings.link }}{% elsif block.settings.anchor_id != blank %}#{{ block.settings.anchor_id | escape }}{% else %}{{ routes.all_products_collection_url }}{% endif %}" class="pp-cat-card"{% if block.settings.anchor_id != blank %} id="{{ block.settings.anchor_id | escape }}"{% endif %} {{ block.shopify_attributes }}>
+              <div class="pp-cat-img-box">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 540 | image_tag: class: 'pp-cat-img', loading: 'lazy', alt: block.settings.image_alt }}
+                {% elsif block.settings.fallback_asset != blank %}
+                  <img src="{{ block.settings.fallback_asset | asset_url }}" alt="{{ block.settings.image_alt | default: block.settings.title | escape }}" class="pp-cat-img" width="540" height="420" loading="lazy">
+                {% endif %}
+              </div>
+              <h3 class="pp-cat-title">{{ block.settings.title | escape }}</h3>
+            </a>
+          {% endfor %}
+        {% else %}
         <!-- 1. Plants & Seeds -->
         <a href="#category-plants" class="pp-cat-card" id="category-plants">
           <div class="pp-cat-img-box">
@@ -118,6 +132,7 @@
           </div>
           <h3 class="pp-cat-title">Pots &amp; Planters</h3>
         </a>
+        {% endif %}
       </div>
 
       <!-- Right Floating Navigation Arrow -->
@@ -131,7 +146,27 @@
 {% schema %}
 {
   "name": "PedhPaudha Categories",
-  "settings": [],
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "SHOP BY CATEGORY" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Explore Our Collections" },
+    { "type": "text", "id": "view_all_label", "label": "View all link label", "default": "View More" },
+    { "type": "url", "id": "view_all_link", "label": "View all link" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Plants & Seeds" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_alt", "label": "Image description", "default": "Plants and seeds" },
+        { "type": "text", "id": "fallback_asset", "label": "Theme asset fallback", "info": "Optional filename from theme assets, for example cat_plants_seeds.webp" },
+        { "type": "text", "id": "anchor_id", "label": "Section anchor ID", "info": "Optional target for navigation links, for example category-plants" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
   "presets": [
     {
       "name": "PedhPaudha Categories"

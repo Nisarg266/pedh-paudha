@@ -9,16 +9,16 @@
 
   // Store in LocalStorage for persistence
   const STORAGE_KEYS = {
-    CART_COUNT: 'pp_cart_count',
     WISHLIST: 'pp_wishlist_items'
   };
 
   function getCartCount() {
-    return parseInt(localStorage.getItem(STORAGE_KEYS.CART_COUNT) || '0', 10);
+    const badge = document.querySelector('.pp-cart-badge');
+    const count = badge ? Number.parseInt(badge.dataset.cartCount || badge.textContent || '0', 10) : 0;
+    return Number.isFinite(count) ? count : 0;
   }
 
   function setCartCount(count) {
-    localStorage.setItem(STORAGE_KEYS.CART_COUNT, count.toString());
     updateCartBadges(count);
   }
 
@@ -201,6 +201,105 @@
     scheduleUpdate();
   }
 
+  function initializeHomeCardSliders(root = document) {
+    if (document.body?.dataset.template !== 'index') return;
+
+    const sliderConfigs = [
+      { selector: '#pp-products-container', label: 'Shop products' },
+      { selector: '.pp-kits-grid', label: 'Starter kits' },
+      { selector: '.pp-why-grid', label: 'Why choose PedhPaudha' },
+      { selector: '.pp-blog-grid', label: 'Gardening guides' },
+      { selector: '.pp-testimonials-grid', label: 'Customer stories' }
+    ];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    sliderConfigs.forEach(({ selector, label }) => {
+      const tracks = [...root.querySelectorAll(selector)];
+      if (root.matches?.(selector)) tracks.unshift(root);
+
+      tracks.forEach((track) => {
+        if (track.dataset.ppSliderReady === 'true') return;
+        track.dataset.ppSliderReady = 'true';
+        track.classList.add('pp-home-card-slider');
+        track.setAttribute('role', 'region');
+        track.setAttribute('aria-roledescription', 'carousel');
+        track.setAttribute('aria-label', label);
+        track.tabIndex = 0;
+
+        const sliderShell = document.createElement('div');
+        sliderShell.className = 'pp-home-card-slider-shell';
+        track.parentNode.insertBefore(sliderShell, track);
+        sliderShell.appendChild(track);
+
+        const controls = document.createElement('div');
+        controls.className = 'pp-slider-controls pp-home-slider-controls';
+        controls.setAttribute('aria-label', `${label} navigation`);
+
+        const makeButton = (direction, iconPath) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = `pp-slider-btn pp-home-slider-${direction}`;
+          button.setAttribute('aria-label', `${direction === 'prev' ? 'Previous' : 'Next'} ${label.toLowerCase()}`);
+          button.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${iconPath}"/></svg>`;
+          return button;
+        };
+
+        const previous = makeButton('prev', 'M15 18l-6-6 6-6');
+        const next = makeButton('next', 'M9 18l6-6-6-6');
+        controls.append(previous, next);
+        sliderShell.appendChild(controls);
+
+        const updateControls = () => {
+          const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+          previous.disabled = track.scrollLeft <= 2;
+          next.disabled = track.scrollLeft >= maxScroll - 2;
+          controls.hidden = maxScroll <= 2;
+        };
+        const slide = (direction) => {
+          const cards = [...track.children];
+          if (!cards.length) return;
+
+          const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
+          const currentIndex = cards.reduce((closestIndex, card, index) => {
+            const rect = card.getBoundingClientRect();
+            const center = rect.left + rect.width / 2;
+            const closestRect = cards[closestIndex].getBoundingClientRect();
+            const closestCenter = closestRect.left + closestRect.width / 2;
+            return Math.abs(center - trackCenter) < Math.abs(closestCenter - trackCenter) ? index : closestIndex;
+          }, 0);
+          const targetCard = cards[Math.min(cards.length - 1, Math.max(0, currentIndex + direction))];
+          const targetRect = targetCard.getBoundingClientRect();
+          const targetCenter = targetRect.left + targetRect.width / 2;
+          const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+          const targetLeft = Math.min(maxScroll, Math.max(0, track.scrollLeft + targetCenter - trackCenter));
+
+          track.scrollTo({
+            left: targetLeft,
+            behavior: reduceMotion.matches ? 'auto' : 'smooth'
+          });
+        };
+
+        previous.addEventListener('click', () => slide(-1));
+        next.addEventListener('click', () => slide(1));
+        track.addEventListener('scroll', updateControls, { passive: true });
+        window.addEventListener('resize', updateControls, { passive: true });
+        updateControls();
+
+        if ('ResizeObserver' in window) {
+          const resizeObserver = new ResizeObserver(updateControls);
+          resizeObserver.observe(track);
+        }
+        const mutationObserver = new MutationObserver(updateControls);
+        mutationObserver.observe(track, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style'] });
+      });
+    });
+
+    if (!initializeHomeCardSliders.sectionLoadListenerAdded) {
+      document.addEventListener('shopify:section:load', (event) => initializeHomeCardSliders(event.target));
+      initializeHomeCardSliders.sectionLoadListenerAdded = true;
+    }
+  }
+
   function initializeHomeScrollAnimations() {
     if (document.body?.dataset.template !== 'index' || !('IntersectionObserver' in window)) return;
 
@@ -210,14 +309,15 @@
     const revealSelector = [
       '.pp-categories-header', '.pp-cat-card', '.pp-search-box', '#pp-products-container > .pp-product-card',
       '.pp-sourcing-header', '.pp-sourcing-card-wrap', '.pp-goals-header', '.pp-goal-card',
+      '.pp-journey-header', '.pp-journey-photo', '.pp-journey-steps', '.pp-journey-step',
       '.pp-kits-header', '.pp-kit-card', '.pp-why-section .pp-container > div:first-child', '.pp-why-card',
       '.pp-blog-section .pp-container > div:first-child', '.pp-blog-card',
       '.pp-testimonials-section .pp-container > div:first-child', '.pp-testimonial-card',
       '.pp-newsletter-box', '.pp-footer-grid'
     ].join(', ');
     const staggerGroupSelector = [
-      '.pp-categories-slider', '#pp-products-container', '.pp-sourcing-grid',
-      '.pp-kits-grid', '.pp-why-grid', '.pp-blog-grid', '.pp-testimonials-grid', '.pp-goals-collage'
+      '.pp-categories-slider', '.pp-sourcing-grid', '.pp-kits-grid', '.pp-why-grid',
+      '.pp-blog-grid', '.pp-testimonials-grid', '.pp-goals-collage', '.pp-journey-steps'
     ].join(', ');
 
     function observeHomeContent(root = document) {
@@ -231,7 +331,7 @@
         if (element.dataset.ppRevealObserved === 'true') return;
         element.dataset.ppRevealObserved = 'true';
 
-        if (element.matches('.pp-cat-card, .pp-product-card, .pp-sourcing-card-wrap, .pp-goal-card, .pp-kit-card, .pp-why-card, .pp-blog-card, .pp-testimonial-card')) {
+        if (element.matches('.pp-cat-card, .pp-product-card, .pp-sourcing-card-wrap, .pp-goal-card, .pp-journey-step, .pp-kit-card, .pp-why-card, .pp-blog-card, .pp-testimonial-card')) {
           const group = element.closest(staggerGroupSelector);
           if (group) {
             const index = groupIndexes.get(group) || 0;
@@ -259,6 +359,7 @@
   function initializeScrollEffects() {
     initializeHeroHeaderScroll();
     initializeMachineryParallax();
+    initializeHomeCardSliders();
     initializeHomeScrollAnimations();
   }
 
@@ -287,7 +388,7 @@
     // 4. Add to Cart Buttons
     document.addEventListener('click', function (e) {
       const addBtn = e.target.closest('.pp-btn-add-cart');
-      if (addBtn) {
+      if (addBtn && !addBtn.closest('form')) {
         e.preventDefault();
         const productName = addBtn.getAttribute('data-product-name') || 'Product';
         const newCount = getCartCount() + 1;
@@ -318,7 +419,7 @@
         const title = (card.getAttribute('data-title') || '').toLowerCase();
         const category = (card.getAttribute('data-category') || '').toLowerCase();
         const matchesQuery = !query || title.includes(query) || category.includes(query);
-        const matchesCat = activeCat === 'all' || category === activeCat.toLowerCase();
+        const matchesCat = activeCat === 'all' || category.includes(activeCat.toLowerCase());
 
         if (matchesQuery && matchesCat) {
           card.style.display = 'flex';
@@ -339,6 +440,32 @@
         filterProducts();
       });
     });
+
+    const filterTrack = document.querySelector('.pp-filter-pills');
+    const filterPrevious = document.querySelector('.pp-filter-prev');
+    const filterNext = document.querySelector('.pp-filter-next');
+    if (filterTrack && filterPrevious && filterNext) {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const updateFilterControls = () => {
+        const maxScroll = Math.max(0, filterTrack.scrollWidth - filterTrack.clientWidth);
+        const hasOverflow = maxScroll > 2;
+        filterTrack.parentElement.classList.toggle('has-overflow', hasOverflow);
+        filterPrevious.disabled = filterTrack.scrollLeft <= 2;
+        filterNext.disabled = filterTrack.scrollLeft >= maxScroll - 2;
+      };
+      const scrollFilters = (direction) => {
+        filterTrack.scrollBy({
+          left: direction * Math.max(filterTrack.clientWidth * 0.72, 140),
+          behavior: reducedMotion.matches ? 'auto' : 'smooth'
+        });
+      };
+      filterPrevious.addEventListener('click', () => scrollFilters(-1));
+      filterNext.addEventListener('click', () => scrollFilters(1));
+      filterTrack.addEventListener('scroll', updateFilterControls, { passive: true });
+      window.addEventListener('resize', updateFilterControls, { passive: true });
+      if (document.fonts?.ready) document.fonts.ready.then(updateFilterControls);
+      updateFilterControls();
+    }
 
     // 5. Category Slider Navigation & Mouse Drag
     const catSlider = document.getElementById('pp-cat-slider');

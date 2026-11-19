@@ -1,92 +1,34 @@
-{% comment %}
-  PedhPaudha Gardening Knowledge & Blog
-{% endcomment %}
-
-<section class="pp-blog-section" aria-label="Gardening Guides">
+{% comment %}Homepage editorial cards use published Shopify blog articles only.{% endcomment %}
+{% assign selected_blog_handle = section.settings.blog | default: 'news' %}
+{% assign selected_blog = blogs[selected_blog_handle] %}
+<section class="pp-blog-section" aria-label="{{ section.settings.accessibility_label | default: 'Gardening guides' | escape }}">
   <div class="pp-container">
-    <div style="text-align:center; max-width:640px; margin:0 auto 44px auto;">
-      <div class="pp-subheading-tag">GARDENING WISDOM</div>
-      <h2 class="pp-section-title">Learn. Grow. Bloom.</h2>
-      <p style="font-family:var(--pp-font-body); font-size:1.05rem; color:var(--pp-text-secondary); margin-top:8px;">
-        Useful ideas, practical tips and seasonal guides to help you grow with confidence.
-      </p>
+    <div class="pp-blog-header">
+      <div class="pp-subheading-tag">{{ section.settings.eyebrow | escape }}</div>
+      <h2 class="pp-section-title">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.description != blank %}<p class="pp-blog-description">{{ section.settings.description | escape }}</p>{% endif %}
     </div>
-
     <div class="pp-blog-grid">
-      <!-- Article 1 -->
-      <article class="pp-blog-card">
-        <div class="pp-blog-img-wrap">
-          <img
-            src="{{ 'cat_garden_tools.webp' | asset_url }}"
-            alt="Essential Tools Every Beginner Gardener Needs"
-            class="pp-blog-img"
-            width="380"
-            height="210"
-            loading="lazy"
-          >
-        </div>
-        <div class="pp-blog-content">
-          <span class="pp-blog-meta">Tool Guide • 4 min read</span>
-          <h3 class="pp-blog-title">Essential Tools Every Beginner Gardener Needs</h3>
-          <p class="pp-blog-excerpt">
-            Before planting your first seed, discover the core five hand tools that save effort, protect wrists, and help young shoots flourish.
-          </p>
-          <span class="pp-blog-read-more">
-            <span>Read Full Guide</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </div>
-      </article>
-
-      <!-- Article 2 -->
-      <article class="pp-blog-card">
-        <div class="pp-blog-img-wrap">
-          <img
-            src="{{ 'kitchen-garden.webp' | asset_url }}"
-            alt="How to Start a Kitchen Garden at Home"
-            class="pp-blog-img"
-            width="380"
-            height="210"
-            loading="lazy"
-          >
-        </div>
-        <div class="pp-blog-content">
-          <span class="pp-blog-meta">Edible Greens • 6 min read</span>
-          <h3 class="pp-blog-title">How to Start a Kitchen Garden at Home</h3>
-          <p class="pp-blog-excerpt">
-            A comprehensive primer on sunlight calculation, potting soil aeration, and choosing rapid-harvest culinary herbs for city balconies.
-          </p>
-          <span class="pp-blog-read-more">
-            <span>Read Full Guide</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </div>
-      </article>
-
-      <!-- Article 3 -->
-      <article class="pp-blog-card">
-        <div class="pp-blog-img-wrap">
-          <img
-            src="{{ 'cat_irrigation.webp' | asset_url }}"
-            alt="Choosing the Right Watering Equipment for Your Plants"
-            class="pp-blog-img"
-            width="380"
-            height="210"
-            loading="lazy"
-          >
-        </div>
-        <div class="pp-blog-content">
-          <span class="pp-blog-meta">Smart Irrigation • 5 min read</span>
-          <h3 class="pp-blog-title">Choosing the Right Watering Equipment for Your Plants</h3>
-          <p class="pp-blog-excerpt">
-            From gentle seedling mists to automated drip lines, learn how precision watering cuts water bills by 60% and prevents root rot.
-          </p>
-          <span class="pp-blog-read-more">
-            <span>Read Full Guide</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </div>
-      </article>
+      {% if selected_blog != blank and selected_blog.articles_count > 0 %}
+      {% for article in selected_blog.articles limit: section.settings.articles_to_show %}
+        <article class="pp-blog-card">
+          <a href="{{ article.url }}" class="pp-blog-img-wrap" aria-label="{{ article.title | escape }}">
+            {% if article.image != blank %}{{ article.image | image_url: width: 900 | image_tag: class: 'pp-blog-img', loading: 'lazy', alt: article.image.alt | default: article.title }}{% endif %}
+          </a>
+          <div class="pp-blog-content">
+            <span class="pp-blog-meta">{{ article.published_at | date: format: 'abbreviated_date' }}</span>
+            <h3 class="pp-blog-title"><a href="{{ article.url }}">{{ article.title | escape }}</a></h3>
+            {% assign article_summary = article.excerpt_or_content | strip_html | truncate: 180 %}
+            {% if article_summary != blank %}<p class="pp-blog-excerpt">{{ article_summary | escape }}</p>{% endif %}
+            <a class="pp-blog-read-more" href="{{ article.url }}"><span>{{ section.settings.link_label | escape }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+      {% endfor %}
+      {% else %}
+        <article class="pp-blog-card"><div class="pp-blog-img-wrap"><img src="{{ 'cat_garden_tools.webp' | asset_url }}" alt="Gardening hand tools" class="pp-blog-img" width="900" height="600" loading="lazy"></div><div class="pp-blog-content"><span class="pp-blog-meta">TOOL GUIDE · 4 MIN READ</span><h3 class="pp-blog-title">Essential Tools Every Beginner Gardener Needs</h3><p class="pp-blog-excerpt">Discover the core hand tools that make planting easier and help young shoots flourish.</p><a class="pp-blog-read-more" href="{{ routes.all_products_collection_url }}"><span>{{ section.settings.link_label | escape }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>
+        <article class="pp-blog-card"><div class="pp-blog-img-wrap"><img src="{{ 'kitchen-garden.webp' | asset_url }}" alt="A thriving kitchen garden" class="pp-blog-img" width="900" height="600" loading="lazy"></div><div class="pp-blog-content"><span class="pp-blog-meta">EDIBLE GREENS · 6 MIN READ</span><h3 class="pp-blog-title">How to Start a Kitchen Garden at Home</h3><p class="pp-blog-excerpt">A practical primer on sunlight, healthy soil and choosing herbs and seasonal vegetables.</p><a class="pp-blog-read-more" href="{{ routes.all_products_collection_url }}"><span>{{ section.settings.link_label | escape }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>
+        <article class="pp-blog-card"><div class="pp-blog-img-wrap"><img src="{{ 'cat_irrigation.webp' | asset_url }}" alt="Garden watering equipment" class="pp-blog-img" width="900" height="600" loading="lazy"></div><div class="pp-blog-content"><span class="pp-blog-meta">SMART IRRIGATION · 5 MIN READ</span><h3 class="pp-blog-title">Choosing the Right Watering Equipment for Your Plants</h3><p class="pp-blog-excerpt">Explore watering options from gentle seedling mists to automated drip lines.</p><a class="pp-blog-read-more" href="{{ routes.all_products_collection_url }}"><span>{{ section.settings.link_label | escape }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -94,11 +36,15 @@
 {% schema %}
 {
   "name": "PedhPaudha Blog",
-  "settings": [],
-  "presets": [
-    {
-      "name": "PedhPaudha Blog"
-    }
-  ]
+  "settings": [
+    { "type": "blog", "id": "blog", "label": "Shopify blog" },
+    { "type": "range", "id": "articles_to_show", "label": "Articles to show", "min": 1, "max": 8, "step": 1, "default": 3 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "GARDENING WISDOM" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Learn. Grow. Bloom." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Useful ideas, practical tips and seasonal guides to help you grow with confidence." },
+    { "type": "text", "id": "accessibility_label", "label": "Section accessibility label", "default": "Gardening guides" },
+    { "type": "text", "id": "link_label", "label": "Article link label", "default": "Read Full Guide" }
+  ],
+  "presets": [{ "name": "PedhPaudha Blog" }]
 }
 {% endschema %}
