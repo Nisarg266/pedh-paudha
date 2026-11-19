@@ -6,14 +6,32 @@
 <section class="pp-goals-section" aria-label="Growing Goals">
   <div class="pp-container">
     <div class="pp-goals-header">
-      <div class="pp-subheading-tag">INSPIRATIONAL SPACES</div>
-      <h2 class="pp-section-title">What's Your Growing Goal?</h2>
+      <div class="pp-subheading-tag">{{ section.settings.eyebrow | default: 'INSPIRATIONAL SPACES' | escape }}</div>
+      <h2 class="pp-section-title">{{ section.settings.heading | default: "What's Your Growing Goal?" | escape }}</h2>
       <p style="font-family:var(--pp-font-body); font-size:1.05rem; color:var(--pp-text-secondary); margin-top:8px;">
-        Explore tailored equipment and solutions for your specific green corner.
+        {{ section.settings.description | default: 'Explore tailored equipment and solutions for your specific green corner.' | escape }}
       </p>
     </div>
 
     <div class="pp-goals-collage">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <a href="{{ block.settings.link | default: routes.all_products_collection_url }}" class="pp-goal-card pp-goal-card--{{ block.settings.layout_area | default: 'home' }}" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 1200 | image_tag: class: 'pp-goal-img', loading: 'lazy', alt: block.settings.image_alt }}
+            {% elsif block.settings.fallback_asset != blank %}
+              <img src="{{ block.settings.fallback_asset | asset_url }}" alt="{{ block.settings.image_alt | default: block.settings.title | escape }}" class="pp-goal-img" width="1200" height="900" loading="lazy">
+            {% endif %}
+            <span class="pp-goal-overlay" aria-hidden="true"></span>
+            <span class="pp-goal-content">
+              <span class="pp-goal-kicker">{{ block.settings.kicker | escape }}</span>
+              <span class="pp-goal-title">{{ block.settings.title | escape }}</span>
+              <span class="pp-goal-desc">{{ block.settings.description | escape }}</span>
+              {% if block.settings.link_label != blank %}<span class="pp-goal-cta">{{ block.settings.link_label | escape }} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>{% endif %}
+            </span>
+          </a>
+        {% endfor %}
+      {% else %}
       <a href="#collections" class="pp-goal-card pp-goal-card--home">
         <img src="{{ 'home-garden.webp' | asset_url }}" alt="A flourishing home garden" class="pp-goal-img" width="640" height="480" loading="lazy">
         <span class="pp-goal-overlay" aria-hidden="true"></span>
@@ -68,6 +86,7 @@
           <span class="pp-goal-cta">Discover essentials <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </span>
       </a>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -75,7 +94,29 @@
 {% schema %}
 {
   "name": "PedhPaudha Goals",
-  "settings": [],
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "INSPIRATIONAL SPACES" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What's Your Growing Goal?" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Explore tailored equipment and solutions for your specific green corner." }
+  ],
+  "blocks": [
+    {
+      "type": "goal",
+      "name": "Growing goal card",
+      "settings": [
+        { "type": "select", "id": "layout_area", "label": "Collage position", "default": "home", "options": [ { "value": "home", "label": "Home garden (left top)" }, { "value": "kitchen", "label": "Kitchen garden (left bottom)" }, { "value": "feature", "label": "Feature (center tall)" }, { "value": "lawn", "label": "Lawn (right top)" }, { "value": "nursery", "label": "Nursery (right bottom)" } ] },
+        { "type": "image_picker", "id": "image", "label": "Card image" },
+        { "type": "text", "id": "fallback_asset", "label": "Theme asset fallback", "info": "Optional image filename from theme assets" },
+        { "type": "text", "id": "image_alt", "label": "Image description", "default": "A thriving green garden" },
+        { "type": "text", "id": "kicker", "label": "Small label", "default": "HOME GARDEN" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Start a Home Garden" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Create a calm green corner with beginner-friendly essentials." },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Discover essentials" },
+        { "type": "url", "id": "link", "label": "Card link" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
   "presets": [
     {
       "name": "PedhPaudha Goals"

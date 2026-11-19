@@ -5,27 +5,36 @@
 <section class="pp-newsletter-section" aria-label="Newsletter Subscription">
   <div class="pp-container">
     <div class="pp-newsletter-box">
-      <div class="pp-subheading-tag">JOIN THE PEDHPAUDHA CIRCLE</div>
-      <h2 class="pp-newsletter-heading">Let's Grow Something<br>Great Together.</h2>
-      <p class="pp-newsletter-sub">
-        Get seasonal planting guides, exclusive equipment previews and gardening tips delivered straight to your inbox.
-      </p>
+      <svg class="pp-newsletter-sprig pp-newsletter-sprig--top" viewBox="0 0 120 150" fill="none" aria-hidden="true">
+        <path d="M17 137C36 106 55 73 91 18M35 108C19 103 12 90 13 75C28 77 39 88 35 108ZM55 78C40 70 36 55 40 41C54 47 62 61 55 78ZM73 51C70 34 78 21 91 14C97 29 91 44 73 51ZM45 94C58 94 69 102 74 116C59 119 47 111 45 94ZM65 65C79 66 89 76 92 90C77 93 66 83 65 65Z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <svg class="pp-newsletter-sprig pp-newsletter-sprig--bottom" viewBox="0 0 120 150" fill="none" aria-hidden="true">
+        <path d="M17 137C36 106 55 73 91 18M35 108C19 103 12 90 13 75C28 77 39 88 35 108ZM55 78C40 70 36 55 40 41C54 47 62 61 55 78ZM73 51C70 34 78 21 91 14C97 29 91 44 73 51ZM45 94C58 94 69 102 74 116C59 119 47 111 45 94Z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="pp-newsletter-content">
+        <div class="pp-subheading-tag">{{ section.settings.eyebrow | default: 'JOIN THE PEDHPAUDHA CIRCLE' | escape }}</div>
+        <h2 class="pp-newsletter-heading">{{ section.settings.heading | default: "Let's Grow Something" | escape }}<br>{{ section.settings.heading_second_line | default: 'Great Together.' | escape }}</h2>
+        <p class="pp-newsletter-sub">
+          {{ section.settings.description | default: 'Get seasonal planting guides, exclusive equipment previews and gardening tips delivered straight to your inbox.' | escape }}
+        </p>
 
-      <form id="pp-newsletter-form" class="pp-newsletter-form" novalidate>
-        <input
-          type="email"
-          id="pp-newsletter-email"
-          class="pp-newsletter-input"
-          placeholder="Enter your email address..."
-          required
-          aria-label="Email address"
-        >
-        <button type="submit" class="pp-newsletter-btn">
-          Join the Growing Community
-        </button>
-      </form>
+        <form id="pp-newsletter-form" class="pp-newsletter-form" novalidate>
+          <input
+            type="email"
+            id="pp-newsletter-email"
+            class="pp-newsletter-input"
+            placeholder="{{ section.settings.email_placeholder | default: 'Enter your email address...' | escape }}"
+            required
+            aria-label="Email address"
+          >
+          <button type="submit" class="pp-newsletter-btn">
+            <span>{{ section.settings.button_label | default: 'Join the Growing Community' | escape }}</span>
+            <span class="pp-newsletter-btn-arrow" aria-hidden="true">→</span>
+          </button>
+        </form>
 
-      <div id="pp-newsletter-feedback" class="pp-newsletter-feedback"></div>
+        <div id="pp-newsletter-feedback" class="pp-newsletter-feedback"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -33,7 +42,14 @@
 {% schema %}
 {
   "name": "PedhPaudha Newsletter",
-  "settings": [],
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "JOIN THE PEDHPAUDHA CIRCLE" },
+    { "type": "text", "id": "heading", "label": "Heading, line 1", "default": "Let's Grow Something" },
+    { "type": "text", "id": "heading_second_line", "label": "Heading, line 2", "default": "Great Together." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Get seasonal planting guides, exclusive equipment previews and gardening tips delivered straight to your inbox." },
+    { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "Enter your email address..." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Join the Growing Community" }
+  ],
   "presets": [
     {
       "name": "PedhPaudha Newsletter"

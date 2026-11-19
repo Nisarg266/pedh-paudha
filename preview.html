@@ -171,8 +171,11 @@
           </div>
         </div>
         <div class="pp-hero-visual-wrapper">
-          <img src="assets/pedhpaudha-fullscreen-slide-1.jpg" alt="Sunlit home garden with lush tropical plants, elegant planters, and gardening essentials" class="pp-hero-visual-img" width="1672" height="941" fetchpriority="high">
-          <div class="pp-hero-image-note"><span class="pp-hero-note-icon" aria-hidden="true">✳</span><span><strong>Grow at your pace</strong><small>Everything your garden needs</small></span></div>
+          <picture class="pp-hero-picture">
+            <source media="(max-width: 768px)" srcset="assets/pedhpaudha-mobile-slide-1.jpg">
+            <img src="assets/pedhpaudha-fullscreen-slide-1.jpg" alt="Sunlit home garden with lush tropical plants, elegant planters, and gardening essentials" class="pp-hero-visual-img" width="1672" height="941" fetchpriority="high">
+          </picture>
+          <a class="pp-hero-mobile-cta pp-hero-mobile-cta--1" href="#collections" aria-label="Shop Now"></a>
         </div>
       </div>
     </article>
@@ -189,8 +192,11 @@
           </div>
         </div>
         <div class="pp-hero-visual-wrapper">
-          <img src="assets/pedhpaudha-fullscreen-slide-2.jpg" alt="A thriving kitchen garden with fresh herbs, greens, and tomatoes" class="pp-hero-visual-img" width="1672" height="941" loading="lazy">
-          <div class="pp-hero-image-note"><span class="pp-hero-note-icon" aria-hidden="true">✳</span><span><strong>Made for home growers</strong><small>Small spaces, big possibilities</small></span></div>
+          <picture class="pp-hero-picture">
+            <source media="(max-width: 768px)" srcset="assets/pedhpaudha-mobile-slide-2.jpg">
+            <img src="assets/pedhpaudha-fullscreen-slide-2.jpg" alt="A thriving kitchen garden with fresh herbs, greens, and tomatoes" class="pp-hero-visual-img" width="1672" height="941" loading="lazy">
+          </picture>
+          <a class="pp-hero-mobile-cta pp-hero-mobile-cta--2" href="#category-plants" aria-label="Start Growing"></a>
         </div>
       </div>
     </article>
@@ -207,8 +213,11 @@
           </div>
         </div>
         <div class="pp-hero-visual-wrapper">
-          <img src="assets/pedhpaudha-fullscreen-slide-3.jpg" alt="A garden mower and hand tools in a fresh green home garden" class="pp-hero-visual-img" width="1672" height="941" loading="lazy">
-          <div class="pp-hero-image-note"><span class="pp-hero-note-icon" aria-hidden="true">✳</span><span><strong>Built for the outdoors</strong><small>Reliable tools, season after season</small></span></div>
+          <picture class="pp-hero-picture">
+            <source media="(max-width: 768px)" srcset="assets/pedhpaudha-mobile-slide-3.jpg">
+            <img src="assets/pedhpaudha-fullscreen-slide-3.jpg" alt="A garden mower and hand tools in a fresh green home garden" class="pp-hero-visual-img" width="1672" height="941" loading="lazy">
+          </picture>
+          <a class="pp-hero-mobile-cta pp-hero-mobile-cta--3" href="#category-tools" aria-label="Explore Garden Tools"></a>
         </div>
       </div>
     </article>
@@ -313,15 +322,16 @@
       <section class="pp-search-section" id="pp-search-anchor" aria-label="Quick Discovery">
         <div class="pp-container">
           <div class="pp-search-box">
+            <p class="pp-search-eyebrow">THE PEDHPAUDHA COLLECTION</p>
             <h2 class="pp-search-heading">What Are You Looking to Grow?</h2>
-            <p class="pp-search-sub">Find the right tools, machines and essentials for your growing journey.</p>
+            <p class="pp-search-sub">From plant care to planters and seasonal seeds, find what your garden needs.</p>
             <div class="pp-filter-pills">
               <button class="pp-filter-pill active" data-filter="all">All Products</button>
-              <button class="pp-filter-pill" data-filter="Garden Tools">Pruning Tools</button>
-              <button class="pp-filter-pill" data-filter="Watering & Irrigation">Water Sprayers</button>
-              <button class="pp-filter-pill" data-filter="Watering & Irrigation">Drip Irrigation</button>
-              <button class="pp-filter-pill" data-filter="Pots & Grow Bags">Grow Bags</button>
-              <button class="pp-filter-pill" data-filter="Power & Machines">Garden Machines</button>
+              <button class="pp-filter-pill" data-filter="Plant Nutrition">Plant Nutrition</button>
+              <button class="pp-filter-pill" data-filter="Plant Protection">Plant Protection</button>
+              <button class="pp-filter-pill" data-filter="Micronutrients">Micronutrients</button>
+              <button class="pp-filter-pill" data-filter="Planters">Planters</button>
+              <button class="pp-filter-pill" data-filter="Seasonal Seeds">Seasonal Seeds</button>
             </div>
           </div>
         </div>
@@ -499,7 +509,61 @@
         </div>
       </section>
 
-      <!-- 7. BOTANICAL MACHINERY FEATURE SHOWCASE (MATCHING USER REFERENCE) -->
+      <!-- 7. GENTLER WAY TO GROW / JOURNEY SECTION -->
+      <section class="pp-journey-section" aria-labelledby="pp-journey-title">
+        <div class="pp-container">
+          <div class="pp-journey-panel">
+            <div class="pp-journey-glow pp-journey-glow--one" aria-hidden="true"></div>
+            <div class="pp-journey-glow pp-journey-glow--two" aria-hidden="true"></div>
+
+            <div class="pp-journey-intro pp-journey-header">
+              <span class="pp-journey-eyebrow">A GENTLER WAY TO GROW</span>
+              <h2 id="pp-journey-title">A little care.<br><em>A lot more green.</em></h2>
+              <p>Good gardens grow one thoughtful step at a time. Find a simple rhythm that feels right for your space.</p>
+              <a class="pp-journey-link" href="#collections">
+                Explore plant care
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <div class="pp-journey-visual">
+              <figure class="pp-journey-photo">
+                <img src="assets/home-garden.webp" alt="A thriving home vegetable garden with fresh tomatoes and herbs" class="pp-journey-image" width="716" height="1024" loading="lazy">
+                <figcaption><span class="pp-journey-photo-kicker">GROW SOMETHING GOOD</span><span>A little space. A whole lot of life.</span></figcaption>
+                <span class="pp-journey-photo-index" aria-hidden="true">01 <i></i> 03</span>
+              </figure>
+              <div class="pp-journey-steps is-in-view" role="group" aria-label="Three simple steps for growing">
+                <article class="pp-journey-step">
+                  <div class="pp-journey-step-top">
+                    <span class="pp-journey-step-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M10 31c5-2 9-2 14 0s9 2 14 0M13 36c4-2 8-2 11 0 4 2 8 2 11 0M24 28V14m0 9c-7 0-11-4-11-11 7 0 11 4 11 11Zm0-6c0-7 4-11 11-11 0 7-4 11-11 11Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="pp-journey-number">01</span>
+                  </div>
+                  <h3>Make room</h3>
+                  <p>Choose a sunny corner, a container, and a plant you love.</p>
+                </article>
+                <article class="pp-journey-step">
+                  <div class="pp-journey-step-top">
+                    <span class="pp-journey-step-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M24 37V20m0 10c-8 0-13-5-13-13 8 0 13 5 13 13Zm0-9c0-8 5-13 13-13 0 8-5 13-13 13Zm-9 20h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="pp-journey-number">02</span>
+                  </div>
+                  <h3>Nourish gently</h3>
+                  <p>Keep watering steady and give roots the care they need.</p>
+                </article>
+                <article class="pp-journey-step">
+                  <div class="pp-journey-step-top">
+                    <span class="pp-journey-step-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M24 39V25m0-5c-6 0-10-4-10-10 6 0 10 4 10 10Zm0-2c0-6 4-10 10-10 0 6-4 10-10 10Zm0 8c-5 0-8-3-8-8 5 0 8 3 8 8Zm0-2c0-5 3-8 8-8 0 5-3 8-8 8Zm-9 11h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="pp-journey-number">03</span>
+                  </div>
+                  <h3>Watch it flourish</h3>
+                  <p>Stay curious, notice new growth, and enjoy the little wins.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. BOTANICAL MACHINERY FEATURE SHOWCASE (MATCHING USER REFERENCE) -->
       <section class="pp-sourcing-section" id="machinery" aria-label="Garden Equipment Sourcing">
         <div class="pp-sourcing-shadow-overlay" aria-hidden="true"></div>
 
@@ -594,54 +658,60 @@
               Explore tailored equipment and solutions for your specific green corner.
             </p>
           </div>
-          <div class="pp-goals-grid">
-            <a href="#collections" class="pp-goal-card">
-              <img src="assets/home-garden.webp" alt="Home Balcony Garden" class="pp-goal-img" width="320" height="400" loading="lazy">
-              <div class="pp-goal-overlay"></div>
-              <div class="pp-goal-content">
-                <h3 class="pp-goal-title">Start a Home Garden</h3>
-                <p class="pp-goal-desc">Create your own calming green corner with simple, beginner-friendly tools.</p>
-                <div class="pp-goal-cta">
-                  <span>Discover Essentials</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-              </div>
+          <div class="pp-goals-collage">
+            <a href="#collections" class="pp-goal-card pp-goal-card--home">
+              <img src="assets/home-garden.webp" alt="A flourishing home garden" class="pp-goal-img" width="640" height="480" loading="lazy">
+              <span class="pp-goal-overlay" aria-hidden="true"></span>
+              <span class="pp-goal-content">
+                <span class="pp-goal-kicker">HOME GARDEN</span>
+                <span class="pp-goal-title">Start a Home Garden</span>
+                <span class="pp-goal-desc">Create a calm green corner with beginner-friendly essentials.</span>
+                <span class="pp-goal-cta">Discover essentials <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              </span>
             </a>
-            <a href="#collections" class="pp-goal-card">
-              <img src="assets/kitchen-garden.webp" alt="Kitchen Garden" class="pp-goal-img" width="320" height="400" loading="lazy">
-              <div class="pp-goal-overlay"></div>
-              <div class="pp-goal-content">
-                <h3 class="pp-goal-title">Build a Kitchen Garden</h3>
-                <p class="pp-goal-desc">Grow fresh organic herbs, microgreens and crisp seasonal vegetables at home.</p>
-                <div class="pp-goal-cta">
-                  <span>Discover Essentials</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-              </div>
+
+            <a href="#collections" class="pp-goal-card pp-goal-card--kitchen">
+              <img src="assets/kitchen-garden.webp" alt="Fresh vegetables growing in a kitchen garden" class="pp-goal-img" width="640" height="480" loading="lazy">
+              <span class="pp-goal-overlay" aria-hidden="true"></span>
+              <span class="pp-goal-content">
+                <span class="pp-goal-kicker">GROW AT HOME</span>
+                <span class="pp-goal-title">Build a Kitchen Garden</span>
+                <span class="pp-goal-desc">Grow fresh herbs and seasonal vegetables at home.</span>
+                <span class="pp-goal-cta">Discover essentials <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              </span>
             </a>
-            <a href="#collections" class="pp-goal-card">
-              <img src="assets/lawn-care.webp" alt="Lawn Care" class="pp-goal-img" width="320" height="400" loading="lazy">
-              <div class="pp-goal-overlay"></div>
-              <div class="pp-goal-content">
-                <h3 class="pp-goal-title">Maintain a Beautiful Lawn</h3>
-                <p class="pp-goal-desc">Keep turf plush, green, weed-free and cleanly manicured with pro gear.</p>
-                <div class="pp-goal-cta">
-                  <span>Discover Essentials</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-              </div>
+
+            <a href="#products" class="pp-goal-card pp-goal-card--feature">
+              <img src="assets/pp-vertical-planters-feature.webp" alt="Colorful vertical tower planters filled with flowers" class="pp-goal-img" width="1024" height="1536" loading="lazy">
+              <span class="pp-goal-overlay" aria-hidden="true"></span>
+              <span class="pp-goal-content">
+                <span class="pp-goal-kicker">MAKE ROOM TO GROW</span>
+                <span class="pp-goal-title">Grow Up. Grow Beautiful.</span>
+                <span class="pp-goal-desc">Bring a whole garden to even the smallest space.</span>
+                <span class="pp-goal-cta">Explore planters <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              </span>
             </a>
-            <a href="#collections" class="pp-goal-card">
-              <img src="assets/nursery-growing.webp" alt="Plant Nursery" class="pp-goal-img" width="320" height="400" loading="lazy">
-              <div class="pp-goal-overlay"></div>
-              <div class="pp-goal-content">
-                <h3 class="pp-goal-title">Grow a Nursery</h3>
-                <p class="pp-goal-desc">Commercial grade irrigation, seedling trays and sprayers for plant growers.</p>
-                <div class="pp-goal-cta">
-                  <span>Discover Essentials</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-              </div>
+
+            <a href="#machinery" class="pp-goal-card pp-goal-card--lawn">
+              <img src="assets/lawn-care.webp" alt="A neatly maintained green lawn" class="pp-goal-img" width="640" height="480" loading="lazy">
+              <span class="pp-goal-overlay" aria-hidden="true"></span>
+              <span class="pp-goal-content">
+                <span class="pp-goal-kicker">OUTDOOR CARE</span>
+                <span class="pp-goal-title">Maintain a Beautiful Lawn</span>
+                <span class="pp-goal-desc">Keep your lawn lush, green and beautifully cared for.</span>
+                <span class="pp-goal-cta">Explore lawn care <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              </span>
+            </a>
+
+            <a href="#collections" class="pp-goal-card pp-goal-card--nursery">
+              <img src="assets/nursery-growing.webp" alt="Colorful flowers growing in a nursery" class="pp-goal-img" width="640" height="480" loading="lazy">
+              <span class="pp-goal-overlay" aria-hidden="true"></span>
+              <span class="pp-goal-content">
+                <span class="pp-goal-kicker">GROWING BUSINESS</span>
+                <span class="pp-goal-title">Grow a Nursery</span>
+                <span class="pp-goal-desc">Build a thriving nursery with dependable growing essentials.</span>
+                <span class="pp-goal-cta">Discover essentials <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              </span>
             </a>
           </div>
         </div>
